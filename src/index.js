@@ -3,6 +3,18 @@ import ReactDOM from 'react-dom'
 import './style/index.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import UIMain from './components/UIMain'
+import UIAddForm from './components/UIAddForm'
+
+ReactDOM.render(
+    <BrowserRouter>
+        <div>
+            <Switch>
+                <Route path='/movies/new' component={UIAddForm}/>
+                <Route path='/' component={UIMain} />
+            </Switch>
+        </div>
+    </BrowserRouter>, document.getElementById('root'))
 serviceWorker.unregister()

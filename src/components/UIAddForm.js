@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+import UINavbar from './UINavbar'
 import '../style/App.css'
 
 class UIAddForm extends Component {
@@ -34,26 +36,30 @@ class UIAddForm extends Component {
 
     render() {
         return (
-            <div className="AddForm container">
-                <form onSubmit={this.handleSubmit}>
-                    <label>Add A Movie</label>
-                    <div class="form-group">
-                        <input name="title" type="text" class="form-control" id="inputTitle" placeholder="Title" />
-                    </div>
-                    <div class="form-group">
-                        <input name="directors" type="text" class="form-control" id="inputDirectors" placeholder="Directors" />
-                    </div>
-                    <div class="form-group">
-                        <input name="year" type="text" class="form-control" id="inputYear" placeholder="Year" />
-                    </div>
-                    <div class="form-group">
-                        <input name="myRating" type="text" class="form-control" id="inputMyRating" placeholder="Your Rating" />
-                    </div>
-                    <div class="form-group">
-                        <input name="posterURL" type="text" class="form-control" id="inputPosterURL" placeholder="Poster URL" />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+            <div>
+                <UINavbar />
+                <div className='AddForm custom-container'>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>Add A Movie</label>
+                        <div class='form-group'>
+                            <input name='title' type='text' class='form-control' id='inputTitle' placeholder='Title' />
+                        </div>
+                        <div class='form-group'>
+                            <input name='directors' type='text' class='form-control' id='inputDirectors' placeholder='Directors' />
+                        </div>
+                        <div class='form-group'>
+                            <input name='year' type='text' class='form-control' id='inputYear' placeholder='Year' />
+                        </div>
+                        <div class='form-group'>
+                            <input name='myRating' type='text' class='form-control' id='inputMyRating' placeholder='Your Rating' />
+                        </div>
+                        <div class='form-group'>
+                            <input name='posterURL' type='text' class='form-control' id='inputPosterURL' placeholder='Poster URL' />
+                        </div>
+                        <button type='submit' class='btn btn-primary'>Submit</button>
+                        <Link to='/' className='ml-5px btn btn-danger'>Cancel</Link>
+                    </form>
+                </div>
             </div>
         )
     }

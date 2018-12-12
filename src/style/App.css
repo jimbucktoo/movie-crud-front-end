@@ -1,3 +1,21 @@
 .App {
     text-align: center;
 }
+
+.custom-container {
+    margin-top: 15%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.ml-5px {
+    margin-left: 5px;
+}

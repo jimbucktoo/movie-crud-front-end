@@ -10,7 +10,7 @@ class UIMovie extends Component {
                 movieList.map(movies => {
                     return( 
                         <tr>
-                            <th scope="row">{movies.id}</th>
+                            <th scope='row'>{movies.id}</th>
                             <td>{movies.title}</td>
                             <td>{movies.directors}</td>
                             <td>{movies.year}</td>
