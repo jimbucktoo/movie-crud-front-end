@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import '../style/App.css'
 
 class UIAddForm extends Component {
-
     handleSubmit(event) {
         event.preventDefault()
         var movieTitle = event.target.title.value
@@ -18,6 +17,7 @@ class UIAddForm extends Component {
             my_rating: movieRating,
             poster_url: moviePosterURL
         }
+
         console.log(movie)
 
         fetch('http://movie-crud-io.herokuapp.com/', {
@@ -33,7 +33,6 @@ class UIAddForm extends Component {
     }
 
     render() {
-
         return (
             <div className="AddForm container">
                 <form onSubmit={this.handleSubmit}>

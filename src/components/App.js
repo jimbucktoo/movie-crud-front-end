@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import '../style/App.css'
 import UINavbar from './UINavbar'
 import UITable from './UITable'
 import UIAddForm from './UIAddForm'
+import '../style/App.css'
 
 class App extends Component {
 

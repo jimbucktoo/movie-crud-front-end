@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import UIMovie from './UIMovie'
 import '../style/App.css'
 
 class UITable extends Component {
     render() {
-        console.log(this.props)
         return (
             <div className="Table">
                 <table class="table table-dark">
@@ -17,13 +17,7 @@ class UITable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>This Is The End</td>
-                            <td>Seth Rogen, Evan Goldberg</td>
-                            <td>2013</td>
-                            <td>5</td>
-                        </tr>
+                        <UIMovie data={this.props.data} />
                     </tbody>
                 </table>
             </div>
