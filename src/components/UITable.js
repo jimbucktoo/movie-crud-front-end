@@ -6,7 +6,7 @@ class UITable extends Component {
     render() {
         return (
             <div className='Table'>
-                <table class='table table-dark'>
+                <table className='table table-dark'>
                     <thead>
                         <tr>
                             <th scope='col'>ID</th>

@@ -9,12 +9,14 @@ class UIMovie extends Component {
             return (
                 movieList.map(movies => {
                     return( 
-                        <tr>
+                        <tr key={movies.id}>
                             <th scope='row'>{movies.id}</th>
                             <td>{movies.title}</td>
                             <td>{movies.directors}</td>
                             <td>{movies.year}</td>
                             <td>{movies.my_rating}</td>
+                            <td><button className='btn btn-primary'>Edit</button></td>
+                            <td><button className='btn btn-danger'>Delete</button></td>
                         </tr>
                     )
                 })

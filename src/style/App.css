@@ -1,9 +1,9 @@
-.App {
+body {
     text-align: center;
 }
 
 .custom-container {
-    margin-top: 15%;
+    margin-top: 5%;
     margin-left: 35%;
     margin-right: 35%;
 }
@@ -19,3 +19,13 @@
 .ml-5px {
     margin-left: 5px;
 }
+
+.color-white {
+    color: white;
+}
+
+.color-white:hover {
+    color: white;
+    text-decoration: none;
+}
+

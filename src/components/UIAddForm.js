@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import UINavbar from './UINavbar'
 import '../style/App.css'
 
 class UIAddForm extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirectToReferrer: false
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
     handleSubmit(event) {
         event.preventDefault()
         var movieTitle = event.target.title.value
@@ -21,7 +32,6 @@ class UIAddForm extends Component {
         }
 
         console.log(movie)
-
         fetch('http://movie-crud-io.herokuapp.com/', {
             method: 'POST',
             headers: {
@@ -30,33 +40,37 @@ class UIAddForm extends Component {
             },
             body: JSON.stringify(movie)
         }).then(response => response.json().then(
-            response => console.log(response)
+            response => this.setState({redirectToReferrer: true})
         ))
     }
 
     render() {
+        const redirectToReferrer = this.state.redirectToReferrer;
+        if (redirectToReferrer === true) {
+            return <Redirect to="/" />
+        }
         return (
             <div>
                 <UINavbar />
                 <div className='AddForm custom-container'>
                     <form onSubmit={this.handleSubmit}>
                         <label>Add A Movie</label>
-                        <div class='form-group'>
-                            <input name='title' type='text' class='form-control' id='inputTitle' placeholder='Title' />
+                        <div className='form-group'>
+                            <input name='title' type='text' className='form-control' id='inputTitle' placeholder='Title' />
                         </div>
-                        <div class='form-group'>
-                            <input name='directors' type='text' class='form-control' id='inputDirectors' placeholder='Directors' />
+                        <div className='form-group'>
+                            <input name='directors' type='text' className='form-control' id='inputDirectors' placeholder='Directors' />
                         </div>
-                        <div class='form-group'>
-                            <input name='year' type='text' class='form-control' id='inputYear' placeholder='Year' />
+                        <div className='form-group'>
+                            <input name='year' type='text' className='form-control' id='inputYear' placeholder='Year' />
                         </div>
-                        <div class='form-group'>
-                            <input name='myRating' type='text' class='form-control' id='inputMyRating' placeholder='Your Rating' />
+                        <div className='form-group'>
+                            <input name='myRating' type='text' className='form-control' id='inputMyRating' placeholder='Your Rating' />
                         </div>
-                        <div class='form-group'>
-                            <input name='posterURL' type='text' class='form-control' id='inputPosterURL' placeholder='Poster URL' />
+                        <div className='form-group'>
+                            <input name='posterURL' type='text' className='form-control' id='inputPosterURL' placeholder='Poster URL' />
                         </div>
-                        <button type='submit' class='btn btn-primary'>Submit</button>
+                        <button type='submit' className='btn btn-primary'>Submit</button>
                         <Link to='/' className='ml-5px btn btn-danger'>Cancel</Link>
                     </form>
                 </div>
