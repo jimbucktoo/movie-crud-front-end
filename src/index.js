@@ -6,14 +6,16 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 import UIMain from './components/UIMain'
 import UIAddForm from './components/UIAddForm'
+import UIEditForm from './components/UIEditForm'
 
 ReactDOM.render(
-    <BrowserRouter>
-        <div>
+    <div>
+        <BrowserRouter>
             <Switch>
+                <Route path='/movies/edit/:id' component={UIEditForm}/>
                 <Route path='/movies/new' component={UIAddForm}/>
-                <Route path='/' component={UIMain} />
+                <Route exact path='/' component={UIMain} />
             </Switch>
-        </div>
-    </BrowserRouter>, document.getElementById('root'))
+        </BrowserRouter>
+    </div>, document.getElementById('root'))
 serviceWorker.unregister()
