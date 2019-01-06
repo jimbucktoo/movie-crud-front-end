@@ -12,7 +12,7 @@ class UIShow extends Component {
     async componentDidMount() {
         const {id} = this.props.match.params
         console.log(id)
-        const movieResponse = await fetch('http://movie-crud-io.herokuapp.com/' + id)
+        const movieResponse = await fetch('https://movie-crud-io.herokuapp.com/' + id)
             .then(function(response) {
                 return response.json()
             })

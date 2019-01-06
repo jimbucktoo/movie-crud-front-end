@@ -11,7 +11,7 @@ class UIMovie extends Component {
     }
 
     async componentDidMount() {
-        const responseOK = await fetch('http://movie-crud-io.herokuapp.com/')
+        const responseOK = await fetch('https://movie-crud-io.herokuapp.com/')
             .then(function(response) {
                 return response.json()
             })
