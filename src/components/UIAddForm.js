@@ -7,12 +7,12 @@ import '../style/App.css'
 class UIAddForm extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             redirectToReferrer: false
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(event) {
@@ -30,7 +30,6 @@ class UIAddForm extends Component {
             my_rating: movieRating,
             poster_url: moviePosterURL
         }
-
         console.log(movie)
         fetch('http://movie-crud-io.herokuapp.com/', {
             method: 'POST',
@@ -45,10 +44,12 @@ class UIAddForm extends Component {
     }
 
     render() {
-        const redirectToReferrer = this.state.redirectToReferrer;
+        const redirectToReferrer = this.state.redirectToReferrer
+
         if (redirectToReferrer === true) {
-            return <Redirect to="/" />
+            return <Redirect to='/' />
         }
+
         return (
             <div>
                 <UINavbar />
@@ -62,13 +63,13 @@ class UIAddForm extends Component {
                             <input name='directors' type='text' className='form-control' id='inputDirectors' placeholder='Directors' />
                         </div>
                         <div className='form-group'>
-                            <input name='year' type='text' className='form-control' id='inputYear' placeholder='Year' />
+                            <input name='year' type='text' pattern='[0-9]*' title='A number value is required.' className='form-control' id='inputYear' placeholder='Year' />
                         </div>
                         <div className='form-group'>
-                            <input name='myRating' type='text' className='form-control' id='inputMyRating' placeholder='Your Rating' />
+                            <input name='myRating' type='text' pattern='[0-9]*' title='A number value is required.' className='form-control' id='inputMyRating' placeholder='Your Rating' />
                         </div>
                         <div className='form-group'>
-                            <input name='posterURL' type='text' className='form-control' id='inputPosterURL' placeholder='Poster URL' />
+                            <input name='posterURL' type='text' pattern='https?://.+' title='A valid url value is required.' className='form-control' id='inputPosterURL' placeholder='Poster URL' />
                         </div>
                         <button type='submit' className='btn btn-primary'>Submit</button>
                         <Link to='/' className='ml-5px btn btn-danger'>Cancel</Link>

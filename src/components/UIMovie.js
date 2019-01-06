@@ -5,11 +5,14 @@ import '../style/App.css'
 class UIMovie extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            redirectToReferrer: false
+            redirectToReferrer: false,
+            redirectToShow: false
         }
-        this.handleDelete = this.handleDelete.bind(this);
+
+        this.handleDelete = this.handleDelete.bind(this)
+        this.handleShow = this.handleShow.bind(this)
     }
 
     handleDelete(id, event) {
@@ -20,30 +23,39 @@ class UIMovie extends Component {
         )
     }
 
+    handleShow(event) {
+        this.setState({redirectToShow: true})
+    }
+
     render() {
-        const redirectToReferrer = this.state.redirectToReferrer;
+        const redirectToReferrer = this.state.redirectToReferrer
+        const redirectToShow = this.state.redirectToShow
 
         if (redirectToReferrer === true) {
-            return <Redirect to="/" />
+            return <Redirect to='/' />
         }
 
         const movieList = this.props.data
-        console.log(movieList)
         if (movieList !== undefined) {
             return (
                 movieList.map(movies => {
                     var editLink = '/movies/edit/' + movies.id
-                    return( 
-                        <tr key={movies.id}>
-                            <th scope='row'>{movies.id}</th>
-                            <td>{movies.title}</td>
-                            <td>{movies.directors}</td>
-                            <td>{movies.year}</td>
-                            <td>{movies.my_rating}</td>
-                            <td><Link to={editLink} className='ml-5px btn btn-primary'>Edit</Link></td>
-                            <td><Link to='/' className='ml-5px btn btn-danger' onClick={this.handleDelete.bind(this, movies.id)}>Delete</Link></td>
-                        </tr>
-                    )
+                    var showLink = '/movies/show/' + movies.id
+
+                    if (redirectToShow === true) {
+                        return <Redirect to={showLink} />
+                    } else {
+                        return( 
+                            <tr key={movies.id} onClick={this.handleShow.bind(this, showLink)}>
+                                <th scope='row'>{movies.id}</th>
+                                <td>{movies.title}</td>
+                                <td>{movies.directors}</td>
+                                <td>{movies.year}</td>
+                                <td>{movies.my_rating}</td>
+                                <td><Link to={editLink} className='ml-5px btn btn-primary'>Edit</Link></td>
+                                <td><Link to='/' className='ml-5px btn btn-danger' onClick={this.handleDelete.bind(this, movies.id)}>Delete</Link></td>
+                            </tr>
+                        )}
                 })
             ) 
         } else {

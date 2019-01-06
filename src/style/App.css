@@ -28,3 +28,28 @@ body {
     color: white;
     text-decoration: none;
 }
+
+.movie-link {
+    border:none;
+    outline:none;
+    text-decoration:none !important;
+    color: white;
+}
+
+.movie-link:hover {
+    text-decoration:none !important;
+    color: gray;
+}
+
+.poster_url {
+    width: 300px;
+}
+
+.jumbo-size {
+    font-size: 500px;
+}
+
+.input-label {
+    display: flex;
+    justify-content: space-between;
+}
