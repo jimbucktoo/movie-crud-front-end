@@ -16,7 +16,7 @@ class UIMovie extends Component {
     }
 
     handleDelete(id, event) {
-        fetch('http://movie-crud-io.herokuapp.com/' + id, {
+        fetch('https://movie-crud-io.herokuapp.com/' + id, {
             method: 'DELETE',
         }).then(
             this.setState({redirectToReferrer: true})

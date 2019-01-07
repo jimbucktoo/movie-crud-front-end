@@ -17,8 +17,7 @@ class UIEditForm extends Component {
 
     async componentDidMount() {
         const {id} = this.props.match.params
-        console.log(id)
-        const movieResponse = await fetch('http://movie-crud-io.herokuapp.com/' + id)
+        const movieResponse = await fetch('https://movie-crud-io.herokuapp.com/' + id)
             .then(function(response) {
                 return response.json()
             })
@@ -45,7 +44,7 @@ class UIEditForm extends Component {
         }
 
         const {id} = this.props.match.params
-        fetch('http://movie-crud-io.herokuapp.com/' + id, {
+        fetch('https://movie-crud-io.herokuapp.com/' + id, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

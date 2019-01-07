@@ -30,8 +30,8 @@ class UIAddForm extends Component {
             my_rating: movieRating,
             poster_url: moviePosterURL
         }
-        console.log(movie)
-        fetch('http://movie-crud-io.herokuapp.com/', {
+
+        fetch('https://movie-crud-io.herokuapp.com/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
