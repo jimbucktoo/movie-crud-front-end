@@ -88,7 +88,7 @@ class UIEditForm extends Component {
         <input name='myRating' type='text' pattern='[0-9]*' title='A number value is required.' className='form-control' id='inputMyRating' placeholder={'Rating: ' + this.state.movie.my_rating} />
     </div>
     <div className='form-group'>
-        <input name='posterURL' type='text' pattern='https?://.+' title='A valid url value is required.' className='form-control' id='inputPosterURL' placeholder={'Poster URL: ' + this.state.movie.poster_url} />
+        <input name='posterURL' type='text' pattern='https://.+' title='A valid url value is required.' className='form-control' id='inputPosterURL' placeholder={'Poster URL: ' + this.state.movie.poster_url} />
     </div>
     <button type='submit' className='btn btn-primary'>Edit</button>
     <Link to='/' className='ml-5px btn btn-danger'>Cancel</Link>
