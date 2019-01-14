@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import UINavbar from './UINavbar'
-import UITable from './UITable'
-import '../style/App.css'
+import React, { Component } from "react"
+import UINavbar from "./UINavbar"
+import UITable from "./UITable"
+import "../style/App.css"
 
 class UIMovie extends Component {
 
@@ -11,7 +11,7 @@ class UIMovie extends Component {
     }
 
     async componentDidMount() {
-        const responseOK = await fetch('https://movie-crud-io.herokuapp.com/')
+        const responseOK = await fetch("https://movie-crud-io.herokuapp.com/")
             .then(function(response) {
                 return response.json()
             })
@@ -21,11 +21,20 @@ class UIMovie extends Component {
         this.setState({data: responseOK})
     }   
 
+    filterDelete(id){
+        let filtering = this.state.data.filter(movie => {
+            if (movie.id !== id){
+                return movie
+            }
+        })
+        this.setState({data: filtering})
+    }
+
     render() {
         return (
-            <div className='App'>
+            <div className="App">
                 <UINavbar />
-                <UITable data={this.state.data} />
+                <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
             </div>
         )
     }

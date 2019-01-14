@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import UINavbar from './UINavbar'
-import '../style/App.css'
+import React, { Component } from "react"
+import UINavbar from "./UINavbar"
+import "../style/App.css"
 
 class UIShow extends Component {
 
@@ -12,7 +12,7 @@ class UIShow extends Component {
     async componentDidMount() {
         const {id} = this.props.match.params
         console.log(id)
-        const movieResponse = await fetch('https://movie-crud-io.herokuapp.com/' + id)
+        const movieResponse = await fetch("https://movie-crud-io.herokuapp.com/" + id)
             .then(function(response) {
                 return response.json()
             })
@@ -33,7 +33,7 @@ class UIShow extends Component {
                         {movie.title}
                         <br />
                         <br />
-                        <img className='poster_url' alt='Poster URL' src={movie.poster_url}></img>
+                        <img className="poster_url" alt="Poster URL" src={movie.poster_url}></img>
                         <br />
                         <br />
                         <br />
