@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import {Link} from "react-router-dom"
-import {Redirect} from "react-router-dom"
+import {Link, Redirect} from "react-router-dom"
 import UINavbar from "./UINavbar"
 import "../style/App.css"
 

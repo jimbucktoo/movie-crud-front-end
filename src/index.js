@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "./style/index.css"
 import * as serviceWorker from "./serviceWorker"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
+import "./style/index.css"
 
 import UIMain from "./components/UIMain"
 import UIAddForm from "./components/UIAddForm"

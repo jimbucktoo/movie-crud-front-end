@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import "../style/App.css"
 
 class UINavbar extends Component {
+
     render() {
         return (
             <div className="Navbar">

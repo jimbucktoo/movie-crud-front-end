@@ -53,3 +53,15 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+.show-link {
+    border:none;
+    outline:none;
+    text-decoration:none !important;
+    color: white;
+}
+
+.show-link:hover {
+    text-decoration:none !important;
+    color: gray;
+}

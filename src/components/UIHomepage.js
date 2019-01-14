@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 import "../style/App.css"
 
 class UIHomepage extends Component {
+
     render() {
         return (
             <div>

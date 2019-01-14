@@ -3,6 +3,7 @@ import UIMovie from "./UIMovie"
 import "../style/App.css"
 
 class UITable extends Component {
+
     render() {
         return (
             <div className="Table">

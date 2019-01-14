@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import {Link} from "react-router-dom"
-import {Redirect} from "react-router-dom"
+import {Link, Redirect} from "react-router-dom"
 import UINavbar from "./UINavbar"
 import "../style/App.css"
 
@@ -91,7 +90,7 @@ class UIEditForm extends Component {
     <button type="submit" className="btn btn-primary">Edit</button>
     <Link to="/" className="ml-5px btn btn-danger">Cancel</Link>
 </form>
-    </div>
+</div>
     <br />
     <br />
 </div>
