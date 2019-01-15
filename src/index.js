@@ -17,8 +17,8 @@ ReactDOM.render(
                 <Route path="/movies/show/:id" component={UIShow}/>
                 <Route path="/movies/edit/:id" component={UIEditForm}/>
                 <Route path="/movies/new" component={UIAddForm}/>
-                <Route path="/home" component={UIHomepage}/>
-                <Route exact path="/" component={UIMain} />
+                <Route path="/main" component={UIMain}/>
+                <Route exact path="/" component={UIHomepage} />
             </Switch>
         </BrowserRouter>
     </div>, document.getElementById("root"))

@@ -27,6 +27,7 @@ class UIEditForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
+
         var movieTitle = event.target.title.value
         var movieDirectors = event.target.directors.value
         var movieYear = event.target.year.value
@@ -58,7 +59,7 @@ class UIEditForm extends Component {
         const redirectToReferrer = this.state.redirectToReferrer
 
         if (redirectToReferrer === true) {
-            return <Redirect to="/" />
+            return <Redirect to="/main" />
         }
 
         if(this.state.movie !== undefined){
@@ -73,24 +74,24 @@ class UIEditForm extends Component {
                             <br />
                             <br />
                             <div className="form-group">
-                                <input name="title" type="text" className="form-control" id="inputTitle" placeholder={"Title: " + this.state.movie.title} />
+                                <input required name="title" type="text" className="form-control" id="inputTitle" placeholder={"Title: " + this.state.movie.title} />
                             </div>
                             <div className="form-group">
-                                <input name="directors" type="text" className="form-control" id="inputDirectors" placeholder={"Director(s): " + this.state.movie.directors} />
+                                <input required name="directors" type="text" className="form-control" id="inputDirectors" placeholder={"Director(s): " + this.state.movie.directors} />
                             </div>
                             <div className="form-group">
-                                <input name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder={"Year: " + this.state.movie.year} />
+                                <input required name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder={"Year: " + this.state.movie.year} />
     </div>
     <div className="form-group">
-        <input name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder={"Rating: " + this.state.movie.my_rating} />
+        <input required name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder={"Rating: " + this.state.movie.my_rating} />
     </div>
     <div className="form-group">
-        <input name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />
+        <input required name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />
     </div>
     <button type="submit" className="btn btn-primary">Edit</button>
-    <Link to="/" className="ml-5px btn btn-danger">Cancel</Link>
+    <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
 </form>
-</div>
+    </div>
     <br />
     <br />
 </div>

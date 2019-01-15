@@ -36,7 +36,7 @@ class UIMovie extends Component {
                             <td><Link className="show-link" to={showLink}>{movies.year}</Link></td>
                             <td><Link className="show-link" to={showLink}>{movies.my_rating}</Link></td>
                             <td><Link to={editLink} className="ml-5px btn btn-primary">Edit</Link></td>
-                            <td><Link to="/" className="ml-5px btn btn-danger" onClick={this.handleDelete.bind(this, movies.id)}>Delete</Link></td>
+                            <td><Link to="/main" className="ml-5px btn btn-danger" onClick={this.handleDelete.bind(this, movies.id)}>Delete</Link></td>
                         </tr>
                     )
                 })

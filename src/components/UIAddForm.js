@@ -45,7 +45,7 @@ class UIAddForm extends Component {
         const redirectToReferrer = this.state.redirectToReferrer
 
         if (redirectToReferrer === true) {
-            return <Redirect to="/" />
+            return <Redirect to="/main" />
         }
 
         return (
@@ -55,27 +55,27 @@ class UIAddForm extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>Add A Movie</label>
                         <div className="form-group">
-                            <input name="title" type="text" className="form-control" id="inputTitle" placeholder="Title" />
+                            <input required name="title" type="text" className="form-control" id="inputTitle" placeholder="Title" />
                         </div>
                         <div className="form-group">
-                            <input name="directors" type="text" className="form-control" id="inputDirectors" placeholder="Directors" />
+                            <input required name="directors" type="text" className="form-control" id="inputDirectors" placeholder="Directors" />
                         </div>
                         <div className="form-group">
-                            <input name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder="Year" />
+                            <input required name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder="Year" />
                         </div>
                         <div className="form-group">
-                            <input name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder="Your Rating" />
+                            <input required name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder="Your Rating" />
                         </div>
                         <div className="form-group">
-                            <input name="posterURL" type="text" pattern="https?://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder="Poster URL" />
+                            <input required name="posterURL" type="text" pattern="https?://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder="Poster URL" />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                        <Link to="/" className="ml-5px btn btn-danger">Cancel</Link>
-                    </form>
-                </div>
+    <button type="submit" className="btn btn-primary">Submit</button>
+    <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
+    </form>
+</div>
             </div>
-        )
-    }
-}
+            )
+            }
+            }
 
-export default UIAddForm
+            export default UIAddForm

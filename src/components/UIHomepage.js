@@ -10,7 +10,7 @@ class UIHomepage extends Component {
                 <i className="material-icons jumbo-size">movie</i>
                 <h1>Movie CRUD</h1>
                 <br />
-                <Link to="/" className="ml-5px btn btn-dark">Enter</Link>
+                <Link to="/main" className="ml-5px btn btn-dark">Enter</Link>
             </div>
         )
     }
