@@ -42,7 +42,7 @@ class UIMovie extends Component {
                 })
             )
         } else {
-            return <tr><td>No Data</td></tr>
+            return <tr></tr>
         }
     }
 }
