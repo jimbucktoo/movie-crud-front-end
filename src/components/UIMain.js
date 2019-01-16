@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import UINavbar from "./UINavbar"
 import UITable from "./UITable"
+import Loader from "react-loader-spinner"
 import "../style/App.css"
 
 class UIMovie extends Component {
@@ -31,10 +32,35 @@ class UIMovie extends Component {
     }
 
     render() {
+        if (this.state.data !== undefined){
+            return (
+                <div className="App">
+                    <UINavbar />
+                    <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
+                </div>
+            )
+        }
+
         return (
-            <div className="App">
-                <UINavbar />
-                <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
+            <div className="App loader">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>
+                    <Loader type="Puff" color="#00BFFF" height="100" width="100" />   
+                    <br />
+                    <span className="loading-color">Loading...</span>
+                </div>
             </div>
         )
     }

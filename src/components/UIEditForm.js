@@ -90,11 +90,11 @@ class UIEditForm extends Component {
     </div>
     <button type="submit" className="btn btn-primary">Edit</button>
     <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
-</form>
-    </div>
-    <br />
-    <br />
+    </form>
 </div>
+<br />
+<br />
+    </div>
 )
 } else {
     return <div></div>

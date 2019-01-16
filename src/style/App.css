@@ -2,6 +2,15 @@ body {
     text-align: center;
 }
 
+.loader {
+    background-color: black;
+    height: 100vh;
+}
+
+.loading-color {
+    color: #00BFFF;
+}
+
 .custom-container {
     margin-top: 5%;
     margin-left: 35%;
