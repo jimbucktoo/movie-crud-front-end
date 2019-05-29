@@ -58,8 +58,6 @@ class UIMovie extends Component {
                 <br />
                 <div>
                     <Loader type="Puff" color="#00BFFF" height="100" width="100" />   
-                    <br />
-                    <span className="loading-color">Loading...</span>
                 </div>
             </div>
         )
