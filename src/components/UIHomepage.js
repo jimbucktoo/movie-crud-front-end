@@ -7,10 +7,10 @@ class UIHomepage extends Component {
     render() {
         return (
             <div>
-                <i className="material-icons jumbo-size">movie</i>
-                <h1>Movie CRUD</h1>
-                <br />
-                <Link to="/main" className="ml-5px btn btn-dark">Enter</Link>
+            <i className="material-icons jumbo-size">movie</i>
+            <h1>MovieCrud</h1>
+            <br />
+            <Link to="/main" className="ml-5px btn btn-dark">Enter</Link>
             </div>
         )
     }
