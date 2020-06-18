@@ -4,10 +4,10 @@ MovieCrud is a full stack application created that allows you to create movie re
 
 ## Links
 
-* [MovieCrud Front-End](https://mcrud.surge.sh/) - MovieCRUD Front-End Application
-* [MovieCrud Back-End](https://movie-crud-io.herokuapp.com/) - MovieCRUD Back-End Server and Database
-* [MovieCrud Front-End Repository](https://github.com/jimbucktoo/movie-crud-front-end/) - MovieCRUD Front-End Github Repository
-* [MovieCrud Back-End Repository](https://github.com/jimbucktoo/movie-crud-back-end/) - MovieCRUD Back-End Github Repository
+* [MovieCrud Front-End](https://mcrud.surge.sh/) - MovieCrud Front-End Application
+* [MovieCrud Back-End](https://movie-crud-io.herokuapp.com/) - MovieCrud Back-End Server and Database
+* [MovieCrud Front-End Repository](https://github.com/jimbucktoo/movie-crud-front-end/) - MovieCrud Front-End Github Repository
+* [MovieCrud Back-End Repository](https://github.com/jimbucktoo/movie-crud-back-end/) - MovieCrud Back-End Github Repository
 
 ## Getting Started
 
