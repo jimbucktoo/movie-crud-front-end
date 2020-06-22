@@ -65,37 +65,37 @@ class UIEditForm extends Component {
         if(this.state.movie !== undefined){
             return (
                 <div>
-                    <UINavbar />
-                    <div className="EditForm custom-container">
-                        <form onSubmit={this.handleSubmit}>
-                            <h6>Edit Movie Review: {this.state.movie.title}</h6>
-                            <br />
-                            <img alt="Poster URL" src={this.state.movie.poster_url} className="poster_url"></img>
-                            <br />
-                            <br />
-                            <div className="form-group">
-                                <input required name="title" type="text" className="form-control" id="inputTitle" placeholder={"Title: " + this.state.movie.title} />
-                            </div>
-                            <div className="form-group">
-                                <input required name="directors" type="text" className="form-control" id="inputDirectors" placeholder={"Director(s): " + this.state.movie.directors} />
-                            </div>
-                            <div className="form-group">
-                                <input required name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder={"Year: " + this.state.movie.year} />
-    </div>
-    <div className="form-group">
-        <input required name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder={"Rating: " + this.state.movie.my_rating} />
-    </div>
-    <div className="form-group">
-        <input required name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />
-    </div>
-    <button type="submit" className="btn btn-primary">Edit</button>
-    <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
-    </form>
-</div>
-<br />
-<br />
-    </div>
-)
+                <UINavbar />
+                <div className="EditForm custom-container">
+                <form onSubmit={this.handleSubmit}>
+                <h6>Edit Movie Review: {this.state.movie.title}</h6>
+                <br />
+                <img alt="Poster URL" src={this.state.movie.poster_url} className="poster_url"></img>
+                <br />
+                <br />
+                <div className="form-group">
+                <input required name="title" type="text" className="form-control" id="inputTitle" placeholder={"Title: " + this.state.movie.title} />
+                </div>
+                <div className="form-group">
+                <input required name="directors" type="text" className="form-control" id="inputDirectors" placeholder={"Director(s): " + this.state.movie.directors} />
+                </div>
+                <div className="form-group">
+                <input required name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder={"Year: " + this.state.movie.year} />
+                </div>
+                <div className="form-group">
+                <input required name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder={"Rating: " + this.state.movie.my_rating} />
+                </div>
+                <div className="form-group">
+                <input required name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />
+                </div>
+                <button type="submit" className="btn btn-primary">Edit</button>
+                <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
+                </form>
+                </div>
+                <br />
+                <br />
+                </div>
+            )
 } else {
     return <div></div>
 }

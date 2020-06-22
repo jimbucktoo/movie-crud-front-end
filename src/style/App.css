@@ -1,5 +1,40 @@
 body {
     text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.navBar {
+    background-color:black;
+    color: white;
+}
+
+.navBarBrand {
+    width: 5%;
+    margin-right: 3%;
+}
+
+.logo {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 5%;
+    border: 10px solid black;
+    box-shadow: 0 10px 15px black;
+    width: 20%;
+}
+
+.dashLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+}
+
+.title {
+    color: white;
+}
+
+.enter {
+    box-shadow: 0 3px 5px black;
 }
 
 .loader {
@@ -12,7 +47,7 @@ body {
 }
 
 .custom-container {
-    margin-top: 5%;
+    margin-top: 1%;
     margin-left: 35%;
     margin-right: 35%;
 }
@@ -52,10 +87,6 @@ body {
 
 .poster_url {
     width: 300px;
-}
-
-.jumbo-size {
-    font-size: 500px;
 }
 
 .input-label {

@@ -35,30 +35,30 @@ class UIMovie extends Component {
         if (this.state.data !== undefined){
             return (
                 <div className="App">
-                    <UINavbar />
-                    <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
+                <UINavbar />
+                <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
                 </div>
             )
         }
 
         return (
             <div className="App loader">
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <div>
-                    <Loader type="Puff" color="#00BFFF" height="100" width="100" />   
-                </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div>
+            <Loader type="Puff" color="#00BFFF" height="100" width="100" />   
+            </div>
             </div>
         )
     }

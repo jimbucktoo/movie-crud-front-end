@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import {Link} from "react-router-dom"
+import logo from "../assets/movieCrud.png"
 import "../style/App.css"
 
 class UIHomepage extends Component {
@@ -7,10 +8,10 @@ class UIHomepage extends Component {
     render() {
         return (
             <div>
-            <i className="material-icons jumbo-size">movie</i>
-            <h1>MovieCrud</h1>
+            <img className="logo" src={logo} />
+            <h1 className="title">MovieCrud</h1>
             <br />
-            <Link to="/main" className="ml-5px btn btn-dark">Enter</Link>
+            <Link to="/main" className="enter ml-5px btn btn-primary">Enter</Link>
             </div>
         )
     }
