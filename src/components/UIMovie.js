@@ -13,7 +13,7 @@ class UIMovie extends Component {
     }
 
     handleDelete(id, event) {
-        fetch("https://movie-crud-io.herokuapp.com/" + id, {
+        fetch("https://moviecrud.onrender.com/" + id, {
             method: "DELETE",
         }).then(() => {
             this.setState({toShow: false})

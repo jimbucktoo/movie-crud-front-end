@@ -29,7 +29,7 @@ class UIAddForm extends Component {
             poster_url: moviePosterURL
         }
 
-        fetch("https://movie-crud-io.herokuapp.com/", {
+        fetch("https://moviecrud.onrender.com/", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
