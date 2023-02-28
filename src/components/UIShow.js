@@ -39,7 +39,7 @@ class UIShow extends Component {
                         <br />
                         Year: {movie.year}
                         <br />
-                        Rating: {movie.my_rating}
+                        Rating: {movie.rating}
                         <br />
                         <br />
                         <br />

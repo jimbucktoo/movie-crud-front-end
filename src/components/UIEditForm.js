@@ -31,14 +31,14 @@ class UIEditForm extends Component {
         var movieTitle = event.target.title.value
         var movieDirectors = event.target.directors.value
         var movieYear = event.target.year.value
-        var movieRating = event.target.myRating.value
+        var movieRating = event.target.rating.value
         var moviePosterURL = event.target.posterURL.value
 
         var movie = {
             title: movieTitle,
             directors: movieDirectors,
             year: movieYear,
-            my_rating: movieRating,
+            rating: movieRating,
             poster_url: moviePosterURL
         }
 
@@ -84,7 +84,7 @@ class UIEditForm extends Component {
                 <input required name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder={"Year: " + this.state.movie.year} />
                 </div>
                 <div className="form-group">
-                <input required name="myRating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputMyRating" placeholder={"Rating: " + this.state.movie.my_rating} />
+                <input required name="rating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputRating" placeholder={"Rating: " + this.state.movie.rating} />
                 </div>
                 <div className="form-group">
                 <input required name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />

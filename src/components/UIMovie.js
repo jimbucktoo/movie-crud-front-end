@@ -36,7 +36,7 @@ class UIMovie extends Component {
                                     <div class="fw-bold"><Link class="movie-title" to={showLink}>{movies.title}</Link></div>
                                     <div>Directors: {movies.directors}</div>
                                     <div>Year: {movies.year}</div>
-                                    <div>Rating: {movies.my_rating}</div>
+                                    <div>Rating: {movies.rating}</div>
                                 </div>
                                 <div class="movie-buttons">
                                     <Link to={editLink} className="btn btn-primary option-button">Edit</Link>
