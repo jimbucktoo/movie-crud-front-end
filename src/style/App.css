@@ -1,40 +1,11 @@
 body {
-    text-align: center;
     background-color: black;
     color: white;
 }
 
-.color-white {
-    color: white !important;
-}
-
-.custom-container {
-    margin-top: 1%;
-    margin-left: 35%;
-    margin-right: 35%;
-}
-
-.dashLogo {
-    width: 50px;
-    height: 50px;
-    border-radius: 10%;
-}
-
-.enter {
-    box-shadow: 0 3px 5px black;
-}
-
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-.input-label {
-    display: flex;
-    justify-content: space-between;
+.image-box {
+    width: 200px;
+    height: 100%;
 }
 
 .loader {
@@ -46,7 +17,12 @@ body {
 }
 
 .login {
+    text-align: center;
     margin-top: 100px;
+}
+
+.login-button {
+    box-shadow: 0 3px 5px black;
 }
 
 .logo {
@@ -58,8 +34,45 @@ body {
     width: 300px;
 }
 
-.ml-5px {
+.movie-link:hover {
+    text-decoration:none !important;
+    color: gray;
+}
+
+.movie-add {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.movie-buttons {
+    margin-top: 10px;
+}
+
+.movie-edit {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.movie-image {
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.movie-info {
     margin-left: 5px;
+}
+
+.movie-item {
+    background-color: #212529 !important;
+    color: white;
+    text-decoration: none !important;
+}
+
+.movie-list {
+    margin: 30px 50px 30px 50px;
 }
 
 .movie-link {
@@ -69,34 +82,47 @@ body {
     color: white;
 }
 
-.movie-link:hover {
-    text-decoration:none !important;
-    color: gray;
+.movie-show {
+    text-align: center;
+}
+
+.movie-title {
+    font-weight: bold;
+    color: white !important;
 }
 
 .navBar {
     background-color:black;
     color: white;
+    text-align: center;
 }
 
 .navBarBrand {
     width: 5%;
 }
 
-.poster_url {
+.navLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+}
+
+.nav-links {
+    color: white !important;
+}
+
+.option-button {
+    margin: 0px 5px 5px 5px;
+}
+
+.poster-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.poster-url {
     width: 300px;
-}
-
-.show-link {
-    border:none;
-    outline:none;
-    text-decoration:none !important;
-    color: white;
-}
-
-.show-link:hover {
-    text-decoration:none !important;
-    color: gray;
 }
 
 .title {

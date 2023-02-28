@@ -66,11 +66,12 @@ class UIEditForm extends Component {
             return (
                 <div>
                 <UINavbar />
-                <div className="EditForm custom-container">
-                <form onSubmit={this.handleSubmit}>
-                <h6>Edit Movie Review: {this.state.movie.title}</h6>
                 <br />
-                <img alt="Poster URL" src={this.state.movie.poster_url} className="poster_url"></img>
+                <div className="EditForm movie-edit">
+                <form onSubmit={this.handleSubmit}>
+                <h6>Edit Movie: {this.state.movie.title}</h6>
+                <br />
+                <img alt="Poster URL" src={this.state.movie.poster_url} className="poster-url"></img>
                 <br />
                 <br />
                 <div className="form-group">
@@ -88,8 +89,10 @@ class UIEditForm extends Component {
                 <div className="form-group">
                 <input required name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />
                 </div>
-                <button type="submit" className="btn btn-primary">Edit</button>
-                <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
+                <div class="movie-buttons">
+                    <button className="btn btn-primary option-button" type="submit">Edit</button>
+                    <Link to="/main" className="btn btn-danger option-button">Cancel</Link>
+                </div>
                 </form>
                 </div>
                 <br />

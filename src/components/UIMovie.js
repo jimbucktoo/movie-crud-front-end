@@ -29,15 +29,21 @@ class UIMovie extends Component {
                     var editLink = "/movies/edit/" + movies.id
                     var showLink = "/movies/show/" + movies.id
                     return( 
-                        <tr key={movies.id}>
-                            <th scope="row"><Link className="show-link" to={showLink}>{movies.id}</Link></th>
-                            <td><Link className="show-link" to={showLink}>{movies.title}</Link></td>
-                            <td><Link className="show-link" to={showLink}>{movies.directors}</Link></td>
-                            <td><Link className="show-link" to={showLink}>{movies.year}</Link></td>
-                            <td><Link className="show-link" to={showLink}>{movies.my_rating}</Link></td>
-                            <td><Link to={editLink} className="ml-5px btn btn-primary">Edit</Link></td>
-                            <td><Link to="/main" className="ml-5px btn btn-danger" onClick={this.handleDelete.bind(this, movies.id)}>Delete</Link></td>
-                        </tr>
+                        <li class="list-group-item d-flex justify-content-between align-items-start movie-item">
+                            <div class="image-box"><img class="poster-image" alt="poster" src={movies.poster_url}></img></div>
+                            <div class="ms-2 me-auto">
+                                <div class="movie-info">
+                                    <div class="fw-bold"><Link class="movie-title" to={showLink}>{movies.title}</Link></div>
+                                    <div>Directors: {movies.directors}</div>
+                                    <div>Year: {movies.year}</div>
+                                    <div>Rating: {movies.my_rating}</div>
+                                </div>
+                                <div class="movie-buttons">
+                                    <Link to={editLink} className="btn btn-primary option-button">Edit</Link>
+                                    <Link to="/main" className="ml-5px btn btn-danger option-button" onClick={this.handleDelete.bind(this, movies.id)}>Delete</Link>
+                                </div>
+                            </div>
+                        </li>
                     )
                 })
             )

@@ -27,12 +27,9 @@ class UIShow extends Component {
             return (
                 <div>
                     <UINavbar />
-                    <div>
+                    <div class="movie-show">
                         <br />
-                        {movie.title}
-                        <br />
-                        <br />
-                        <img className="poster_url" alt="Poster URL" src={movie.poster_url}></img>
+                        <img className="poster-url" alt="Poster URL" src={movie.poster_url}></img>
                         <br />
                         <br />
                         <br />
