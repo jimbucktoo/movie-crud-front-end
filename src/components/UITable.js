@@ -14,7 +14,7 @@ class UITable extends Component {
                             <th scope="col">Title</th>
                             <th scope="col">Directors</th>
                             <th scope="col">Year</th>
-                            <th scope="col">My Rating</th>
+                            <th scope="col">Rating</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>

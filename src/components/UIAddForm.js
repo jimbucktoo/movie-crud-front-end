@@ -68,14 +68,14 @@ class UIAddForm extends Component {
                         </div>
                         <div className="form-group">
                             <input required name="posterURL" type="text" pattern="https?://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder="Poster URL" />
-                        </div>
+    </div>
     <button type="submit" className="btn btn-primary">Submit</button>
     <Link to="/main" className="ml-5px btn btn-danger">Cancel</Link>
-    </form>
+</form>
+    </div>
 </div>
-            </div>
-            )
-            }
-            }
+)
+}
+}
 
-            export default UIAddForm
+export default UIAddForm

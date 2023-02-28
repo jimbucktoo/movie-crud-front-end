@@ -4,18 +4,49 @@ body {
     color: white;
 }
 
+.color-white {
+    color: white !important;
+}
+
+.custom-container {
+    margin-top: 1%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+.dashLogo {
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+}
+
+.enter {
+    box-shadow: 0 3px 5px black;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.input-label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.loader {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .login {
     margin-top: 100px;
-}
-
-.navBar {
-    background-color:black;
-    color: white;
-}
-
-.navBarBrand {
-    width: 5%;
-    margin-right: 3%;
 }
 
 .logo {
@@ -27,54 +58,8 @@ body {
     width: 300px;
 }
 
-.dashLogo {
-    width: 50px;
-    height: 50px;
-    border-radius: 10%;
-}
-
-.title {
-    color: white;
-}
-
-.enter {
-    box-shadow: 0 3px 5px black;
-}
-
-.loader {
-    background-color: black;
-    height: 100vh;
-}
-
-.loading-color {
-    color: #026EFF;
-}
-
-.custom-container {
-    margin-top: 1%;
-    margin-left: 35%;
-    margin-right: 35%;
-}
-
-.float-right {
-    float: right;
-}
-
-.float-left {
-    float: left;
-}
-
 .ml-5px {
     margin-left: 5px;
-}
-
-.color-white {
-    color: white;
-}
-
-.color-white:hover {
-    color: white;
-    text-decoration: none;
 }
 
 .movie-link {
@@ -89,13 +74,17 @@ body {
     color: gray;
 }
 
-.poster_url {
-    width: 300px;
+.navBar {
+    background-color:black;
+    color: white;
 }
 
-.input-label {
-    display: flex;
-    justify-content: space-between;
+.navBarBrand {
+    width: 5%;
+}
+
+.poster_url {
+    width: 300px;
 }
 
 .show-link {
@@ -108,4 +97,8 @@ body {
 .show-link:hover {
     text-decoration:none !important;
     color: gray;
+}
+
+.title {
+    color: white;
 }

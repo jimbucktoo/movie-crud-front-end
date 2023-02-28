@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import UINavbar from "./UINavbar"
 import UITable from "./UITable"
-import Loader from "react-loader-spinner"
+import { Rings } from 'react-loader-spinner'
 import "../style/App.css"
 
 class UIMovie extends Component {
@@ -35,31 +35,27 @@ class UIMovie extends Component {
         if (this.state.data !== undefined){
             return (
                 <div className="App">
-                <UINavbar />
-                <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
+                    <UINavbar />
+                    <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
                 </div>
             )
         }
 
         return (
             <div className="App loader">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>
-            <Loader type="Puff" color="#00BFFF" height="100" width="100" />   
-            </div>
-            </div>
+                <div>
+                    <Rings
+                    height="100"
+                    width="100"
+                    color="#00BFFF"
+                    radius="6"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="rings-loading"
+                />
+                    </div>
+                </div>
         )
     }
 }

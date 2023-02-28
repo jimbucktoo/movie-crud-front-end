@@ -8,7 +8,7 @@ class UIHomepage extends Component {
     render() {
         return (
             <div className="login">
-            <img className="logo" src={logo} />
+            <img className="logo" alt="Logo" src={logo} />
             <h1 className="title">MovieCrud</h1>
             <br />
             <Link to="/main" className="enter ml-5px btn btn-primary">Enter</Link>
