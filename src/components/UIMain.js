@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import UINavbar from "./UINavbar"
 import UITable from "./UITable"
-import { Rings } from 'react-loader-spinner'
 import "../style/App.css"
 
 class UIMovie extends Component {
@@ -43,19 +42,22 @@ class UIMovie extends Component {
 
         return (
             <div className="App loader">
-                <div>
-                    <Rings
-                    height="100"
-                    width="100"
-                    color="#00BFFF"
-                    radius="6"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="rings-loading"
-                />
-                    </div>
-                </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
         )
     }
 }
