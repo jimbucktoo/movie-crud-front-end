@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/static/media/movieCrud.a3a7187a.png"
   },
   {
-    "revision": "c93e55cad10f27843757482403452c4c",
+    "revision": "6e06ccb29ab8dd946aa7e810aa6d7d65",
     "url": "/index.html"
   }
 ];
