@@ -3,7 +3,7 @@ import UINavbar from "./UINavbar"
 import UITable from "./UITable"
 import "../style/App.css"
 
-class UIMovie extends Component {
+class UIMain extends Component {
 
     constructor(props) {
         super(props)
@@ -42,24 +42,24 @@ class UIMovie extends Component {
 
         return (
             <div className="App loader">
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
         )
     }
 }
 
-export default UIMovie
+export default UIMain
