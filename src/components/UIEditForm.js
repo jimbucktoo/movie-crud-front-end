@@ -1,108 +1,173 @@
-import React, { Component } from "react"
-import {Link, Redirect} from "react-router-dom"
-import UINavbar from "./UINavbar"
-import "../style/App.css"
+import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
+import UINavbar from "./UINavbar";
+import { graphql } from "react-apollo";
+import {
+    getMoviesQuery,
+    getMovieQuery,
+    updateMovieMutation,
+} from "../queries/queries";
+import { flowRight as compose } from "lodash";
+import "../style/App.css";
 
 class UIEditForm extends Component {
-
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            redirectToReferrer: false
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
+            redirectToReferrer: false,
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
-        const {id} = this.props.match.params
-        const movieResponse = await fetch("https://moviecrud.onrender.com/" + id)
-            .then(function(response) {
-                return response.json()
-            })
-            .then(function(myJson) {
-                return myJson
-            })
-        this.setState({movie: movieResponse})
-    }   
-
     handleSubmit(event) {
-        event.preventDefault()
+        event.preventDefault();
 
-        var movieTitle = event.target.title.value
-        var movieDirectors = event.target.directors.value
-        var movieYear = event.target.year.value
-        var movieRating = event.target.rating.value
-        var moviePosterURL = event.target.posterURL.value
+        const { id } = this.props.match.params;
+        var title = event.target.title.value;
+        var directors = event.target.directors.value;
+        var year = parseInt(event.target.year.value);
+        var rating = parseInt(event.target.rating.value);
+        var poster_url = event.target.posterURL.value;
 
-        var movie = {
-            title: movieTitle,
-            directors: movieDirectors,
-            year: movieYear,
-            rating: movieRating,
-            poster_url: moviePosterURL
-        }
-
-        const {id} = this.props.match.params
-        fetch("https://moviecrud.onrender.com/" + id, {
-            method: "PUT",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(movie)
-        }).then(response => response.json().then(
-            response => this.setState({redirectToReferrer: true})
-        ))
+        this.props
+            .updateMovieMutation({
+                variables: {
+                    id: id,
+                    title: title,
+                    directors: directors,
+                    year: year,
+                    rating: rating,
+                    poster_url: poster_url,
+                },
+                refetchQueries: [{ query: getMoviesQuery }],
+            })
+            .then(this.setState({ redirectToReferrer: true }));
     }
 
     render() {
-        const redirectToReferrer = this.state.redirectToReferrer
+        const movie = this.props.data.movie;
+        const redirectToReferrer = this.state.redirectToReferrer;
 
         if (redirectToReferrer === true) {
-            return <Redirect to="/main" />
+            return <Redirect to="/main" />;
         }
 
-        if(this.state.movie !== undefined){
+        if (movie !== undefined) {
             return (
                 <div>
-                <UINavbar />
-                <br />
-                <div className="EditForm movie-edit">
-                <form onSubmit={this.handleSubmit}>
-                <h6>Edit Movie: {this.state.movie.title}</h6>
-                <br />
-                <img alt="Poster URL" src={this.state.movie.poster_url} className="poster-url"></img>
-                <br />
-                <br />
-                <div className="form-group">
-                <input required name="title" type="text" className="form-control" id="inputTitle" placeholder={"Title: " + this.state.movie.title} />
+                    <UINavbar />
+                    <br />
+                    <div className="EditForm movie-edit">
+                        <form onSubmit={this.handleSubmit}>
+                            <h6>Edit Movie: {movie.title}</h6>
+                            <br />
+                            <img
+                                alt="Poster URL"
+                                src={movie.poster_url}
+                                className="poster-url"
+                            ></img>
+                            <br />
+                            <br />
+                            <div className="form-group">
+                                <input
+                                    required
+                                    name="title"
+                                    type="text"
+                                    className="form-control"
+                                    id="inputTitle"
+                                    placeholder={"Title: " + movie.title}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    required
+                                    name="directors"
+                                    type="text"
+                                    className="form-control"
+                                    id="inputDirectors"
+                                    placeholder={
+                                        "Director(s): " + movie.directors
+                                    }
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    required
+                                    name="year"
+                                    type="text"
+                                    pattern="[0-9]*"
+                                    title="A number value is required."
+                                    className="form-control"
+                                    id="inputYear"
+                                    placeholder={"Year: " + movie.year}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    required
+                                    name="rating"
+                                    type="text"
+                                    pattern="[0-9]*"
+                                    title="A number value is required."
+                                    className="form-control"
+                                    id="inputRating"
+                                    placeholder={"Rating: " + movie.rating}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    required
+                                    name="posterURL"
+                                    type="text"
+                                    pattern="https://.+"
+                                    title="A valid url value is required."
+                                    className="form-control"
+                                    id="inputPosterURL"
+                                    placeholder={
+                                        "Poster URL: " + movie.poster_url
+                                    }
+                                />
+                            </div>
+                            <div class="movie-buttons">
+                                <button
+                                    className="btn btn-primary option-button"
+                                    type="submit"
+                                >
+                                    Edit
+                                </button>
+                                <Link
+                                    to="/main"
+                                    className="btn btn-danger option-button"
+                                >
+                                    Cancel
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
+                    <br />
+                    <br />
                 </div>
-                <div className="form-group">
-                <input required name="directors" type="text" className="form-control" id="inputDirectors" placeholder={"Director(s): " + this.state.movie.directors} />
+            );
+        } else {
+            return (
+                <div>
+                    <UINavbar />
                 </div>
-                <div className="form-group">
-                <input required name="year" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputYear" placeholder={"Year: " + this.state.movie.year} />
-                </div>
-                <div className="form-group">
-                <input required name="rating" type="text" pattern="[0-9]*" title="A number value is required." className="form-control" id="inputRating" placeholder={"Rating: " + this.state.movie.rating} />
-                </div>
-                <div className="form-group">
-                <input required name="posterURL" type="text" pattern="https://.+" title="A valid url value is required." className="form-control" id="inputPosterURL" placeholder={"Poster URL: " + this.state.movie.poster_url} />
-                </div>
-                <div class="movie-buttons">
-                    <button className="btn btn-primary option-button" type="submit">Edit</button>
-                    <Link to="/main" className="btn btn-danger option-button">Cancel</Link>
-                </div>
-                </form>
-                </div>
-                <br />
-                <br />
-                </div>
-            )
-} else {
-    return <div></div>
-}
-}
+            );
+        }
+    }
 }
 
-export default UIEditForm
+export default compose(
+    graphql(getMoviesQuery, { name: "getMoviesQuery" }),
+    graphql(getMovieQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.match.params.id,
+                },
+            };
+        },
+    }),
+    graphql(updateMovieMutation, { name: "updateMovieMutation" })
+)(UIEditForm);

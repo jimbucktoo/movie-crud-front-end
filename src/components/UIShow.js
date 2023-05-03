@@ -1,35 +1,30 @@
-import React, { Component } from "react"
-import UINavbar from "./UINavbar"
-import "../style/App.css"
+import React, { Component } from "react";
+import UINavbar from "./UINavbar";
+import { graphql } from "react-apollo";
+import { getMovieQuery } from "../queries/queries";
+import { flowRight as compose } from "lodash";
+import "../style/App.css";
 
 class UIShow extends Component {
-
     constructor(props) {
-        super(props)
-        this.state = {}
+        super(props);
+        this.state = {};
     }
 
-    async componentDidMount() {
-        const {id} = this.props.match.params
-        const movieResponse = await fetch("https://moviecrud.onrender.com/" + id)
-            .then(function(response) {
-                return response.json()
-            })
-            .then(function(myJson) {
-                return myJson
-            })
-        this.setState({movie: movieResponse})
-    }   
-
     render() {
-        const movie = this.state.movie
-        if(movie !== undefined){
+        const movie = this.props.data.movie;
+
+        if (movie !== undefined) {
             return (
                 <div>
                     <UINavbar />
                     <div class="movie-show">
                         <br />
-                        <img className="poster-url" alt="Poster URL" src={movie.poster_url}></img>
+                        <img
+                            className="poster-url"
+                            alt="Poster URL"
+                            src={movie.poster_url}
+                        ></img>
                         <br />
                         <br />
                         <br />
@@ -45,11 +40,25 @@ class UIShow extends Component {
                         <br />
                     </div>
                 </div>
-            )
+            );
         } else {
-            return <div></div>
+            return (
+                <div>
+                    <UINavbar />
+                </div>
+            );
         }
     }
 }
 
-export default UIShow
+export default compose(
+    graphql(getMovieQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.match.params.id,
+                },
+            };
+        },
+    })
+)(UIShow);

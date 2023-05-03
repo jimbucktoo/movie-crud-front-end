@@ -1,43 +1,21 @@
-import React, { Component } from "react"
-import UINavbar from "./UINavbar"
-import UITable from "./UITable"
-import "../style/App.css"
+import React, { Component } from "react";
+import UINavbar from "./UINavbar";
+import UITable from "./UITable";
+import { graphql } from "react-apollo";
+import { getMoviesQuery } from "../queries/queries";
+import { flowRight as compose } from "lodash";
+import "../style/App.css";
 
 class UIMain extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
-
-    async componentDidMount() {
-        const responseOK = await fetch("https://moviecrud.onrender.com/")
-            .then(function(response) {
-                return response.json()
-            })
-            .then(function(myJson) {
-                return myJson
-            })
-        this.setState({data: responseOK})
-    }   
-
-    filterDelete(id){
-        let filtering = this.state.data.filter(movie => {
-            if (movie.id !== id){
-                return movie
-            }
-        })
-        this.setState({data: filtering})
-    }
-
     render() {
-        if (this.state.data !== undefined){
+        const movies = this.props.getMoviesQuery.movies;
+        if (movies !== undefined) {
             return (
                 <div className="App">
                     <UINavbar />
-                    <UITable data={this.state.data} filterDelete={this.filterDelete.bind(this)}/>
+                    <UITable />
                 </div>
-            )
+            );
         }
 
         return (
@@ -58,8 +36,10 @@ class UIMain extends Component {
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default UIMain
+export default compose(graphql(getMoviesQuery, { name: "getMoviesQuery" }))(
+    UIMain
+);
