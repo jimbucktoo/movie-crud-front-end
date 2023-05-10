@@ -14,8 +14,8 @@ const getMoviesQuery = gql`
 `;
 
 const getMovieQuery = gql`
-    {
-        movie(id: 1) {
+    query GetMovie($id: ID!) {
+        movie(id: $id) {
             id
             title
             directors
