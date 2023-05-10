@@ -41,6 +41,12 @@ npm run build
 npm start
 ```
 
+4. Visit the following URL and you should see the application populate the page:
+
+```
+http://localhost:3000/
+```
+
 ## Technologies
 
 * [Bootstrap](https://www.getbootstrap.com/) - Bootstrap is a free and open-source front-end framework for developing websites and web applications.
