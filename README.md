@@ -46,6 +46,7 @@ npm start
 * [Bootstrap](https://www.getbootstrap.com/) - Bootstrap is a free and open-source front-end framework for developing websites and web applications.
 * [Materialize](https://materializecss.com/) - Materialize is a modern responsive CSS framework based on Material Design by Google.
 * [React](https://reactjs.org/) - React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.
+* [GraphQL](https://graphql.org/) - GraphQL is an open-source data query and manipulation language for APIs and a query runtime engine. 
 
 ## Authors
 
