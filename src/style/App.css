@@ -69,10 +69,13 @@ body {
     background-color: #212529 !important;
     color: white;
     text-decoration: none !important;
+    margin: 10px 0px;
+    padding: 20px 20px;
+    border-radius: 20px !important;
 }
 
 .movie-list {
-    margin: 30px 50px 30px 50px;
+    margin: 15px 30px;
 }
 
 .movie-link {
@@ -127,4 +130,23 @@ body {
 
 .title {
     color: white;
+}
+
+.Table {
+    margin: 0 auto;
+    width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+    .Table {
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .Table {
+        margin: 0 auto;
+        width: 90%;
+    }
 }
