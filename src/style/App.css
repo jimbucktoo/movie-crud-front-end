@@ -3,6 +3,15 @@ body {
     color: white;
 }
 
+.button {
+    margin: 0px 5px 5px 5px;
+}
+
+.container {
+    text-align: center;
+    margin-top: 100px;
+}
+
 .image-box {
     width: 200px;
     height: 100%;
@@ -16,15 +25,6 @@ body {
     justify-content: center;
 }
 
-.login {
-    text-align: center;
-    margin-top: 100px;
-}
-
-.login-button {
-    box-shadow: 0 3px 5px black;
-}
-
 .logo {
     margin-top: 5%;
     margin-bottom: 5%;
@@ -32,11 +32,6 @@ body {
     border: 10px solid black;
     box-shadow: 0 10px 15px black;
     width: 300px;
-}
-
-.movie-link:hover {
-    text-decoration:none !important;
-    color: gray;
 }
 
 .movie-add {
@@ -74,10 +69,6 @@ body {
     border-radius: 20px !important;
 }
 
-.movie-list {
-    margin: 15px 30px;
-}
-
 .movie-link {
     border:none;
     outline:none;
@@ -85,13 +76,17 @@ body {
     color: white;
 }
 
-.movie-show {
-    text-align: center;
+.movie-link:hover {
+    text-decoration:none !important;
+    color: gray;
 }
 
-.movie-title {
-    font-weight: bold;
-    color: white !important;
+.movie-list {
+    margin: 15px 30px;
+}
+
+.movie-show {
+    text-align: center;
 }
 
 .navBar {
@@ -114,10 +109,6 @@ body {
     color: white !important;
 }
 
-.option-button {
-    margin: 0px 5px 5px 5px;
-}
-
 .poster-image {
     height: 100%;
     width: 100%;
@@ -128,13 +119,34 @@ body {
     width: 300px;
 }
 
-.title {
-    color: white;
+.profile {
+    margin: 0 auto;
+    text-align: center;
 }
 
-.Table {
+.title {
+    font-weight: bold;
+    color: white !important;
+}
+
+.table {
     margin: 0 auto;
     width: 80%;
+}
+
+#logout {
+    color: red;
+}
+
+#logout:focus {
+    background-color: transparent;
+}
+
+#userPicture {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 25px;
 }
 
 @media only screen and (max-width: 600px) {

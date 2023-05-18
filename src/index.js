@@ -13,11 +13,22 @@ import UIHomepage from "./components/UIHomepage";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
+import { Auth0Provider } from "@auth0/auth0-react";
+
 const client = new ApolloClient({
     uri: "https://moviecrud.onrender.com/graphql",
 });
 
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 ReactDOM.render(
+    <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    authorizationParams={{
+        redirect_uri: window.location.origin + "/main"
+    }}>
     <ApolloProvider client={client}>
         <div>
             <BrowserRouter>
@@ -30,7 +41,8 @@ ReactDOM.render(
                 </Switch>
             </BrowserRouter>
         </div>
-    </ApolloProvider>,
+    </ApolloProvider>
+    </Auth0Provider>,
     document.getElementById("root")
 );
 serviceWorker.unregister();

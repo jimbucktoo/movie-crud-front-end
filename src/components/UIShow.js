@@ -20,11 +20,7 @@ class UIShow extends Component {
                     <UINavbar />
                     <div class="movie-show">
                         <br />
-                        <img
-                            className="poster-url"
-                            alt="Poster URL"
-                            src={movie.poster_url}
-                        ></img>
+                        <img className="poster-url" alt="Poster URL" src={movie.poster_url}></img>
                         <br />
                         <br />
                         <br />

@@ -5,12 +5,9 @@ import "../style/App.css";
 class UITable extends Component {
     render() {
         return (
-            <div className="Table">
+            <div className="table">
                 <ul class="list-group movie-list">
-                    <UIMovie
-                        data={this.props.data}
-                        filterDelete={this.props.filterDelete}
-                    />
+                    <UIMovie data={this.props.data} filterDelete={this.props.filterDelete}/>
                 </ul>
             </div>
         );

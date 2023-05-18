@@ -53,73 +53,58 @@ class UIAddForm extends Component {
                         <label>Add A Movie</label>
                         <div className="form-group">
                             <input
-                                required
-                                name="title"
-                                type="text"
-                                className="form-control"
-                                id="inputTitle"
-                                placeholder="Title"
-                            />
+                            required
+                            name="title"
+                            type="text"
+                            className="form-control"
+                            id="inputTitle"
+                            placeholder="Title"/>
                         </div>
                         <div className="form-group">
                             <input
-                                required
-                                name="directors"
-                                type="text"
-                                className="form-control"
-                                id="inputDirectors"
-                                placeholder="Directors"
-                            />
+                            required
+                            name="directors"
+                            type="text"
+                            className="form-control"
+                            id="inputDirectors"
+                            placeholder="Directors"/>
                         </div>
                         <div className="form-group">
                             <input
-                                required
-                                name="year"
-                                type="text"
-                                pattern="[0-9]*"
-                                title="A number value is required."
-                                className="form-control"
-                                id="inputYear"
-                                placeholder="Year"
-                            />
+                            required
+                            name="year"
+                            type="text"
+                            pattern="[0-9]*"
+                            title="A number value is required."
+                            className="form-control"
+                            id="inputYear"
+                            placeholder="Year"/>
                         </div>
                         <div className="form-group">
                             <input
-                                required
-                                name="rating"
-                                type="text"
-                                pattern="[0-9]*"
-                                title="A number value is required."
-                                className="form-control"
-                                id="inputRating"
-                                placeholder="Rating"
-                            />
+                            required
+                            name="rating"
+                            type="text"
+                            pattern="[0-9]*"
+                            title="A number value is required."
+                            className="form-control"
+                            id="inputRating"
+                            placeholder="Rating"/>
                         </div>
                         <div className="form-group">
                             <input
-                                required
-                                name="posterURL"
-                                type="text"
-                                pattern="https?://.+"
-                                title="A valid url value is required."
-                                className="form-control"
-                                id="inputPosterURL"
-                                placeholder="Poster URL"
-                            />
+                            required
+                            name="posterURL"
+                            type="text"
+                            pattern="https?://.+"
+                            title="A valid url value is required."
+                            className="form-control"
+                            id="inputPosterURL"
+                            placeholder="Poster URL"/>
                         </div>
                         <div class="movie-buttons">
-                            <button
-                                className="btn btn-primary option-button"
-                                type="submit"
-                            >
-                                Submit
-                            </button>
-                            <Link
-                                to="/main"
-                                className="btn btn-danger option-button"
-                            >
-                                Cancel
-                            </Link>
+                            <button className="btn btn-primary button" type="submit">Submit</button>
+                            <Link to="/main" className="btn btn-danger button">Cancel</Link>
                         </div>
                     </form>
                 </div>
