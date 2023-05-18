@@ -9,7 +9,6 @@ body {
 
 .container {
     text-align: center;
-    margin-top: 100px;
 }
 
 .image-box {
@@ -126,7 +125,13 @@ body {
 
 .title {
     font-weight: bold;
+    font-size: 24px;
     color: white !important;
+    text-decoration: none !important;
+}
+
+.title:hover {
+    color: #046cfb !important;
 }
 
 .table {
@@ -135,7 +140,7 @@ body {
 }
 
 #logout {
-    color: red;
+    color: #FF0000;
 }
 
 #logout:focus {
