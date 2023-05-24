@@ -8,7 +8,7 @@ class UIHomepage extends Component {
         return (
             <div className="container">
                 <img className="logo" alt="Logo" src={logo} />
-                <h1 className="title">MovieCrud</h1>
+                <h1 className="app-title">MovieCrud</h1>
                 <br />
                 <LoginButton />
             </div>

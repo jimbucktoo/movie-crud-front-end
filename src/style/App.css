@@ -3,6 +3,15 @@ body {
     color: white;
 }
 
+.app-title {
+    font-weight: bold;
+    color: white !important;
+}
+
+.app-title:hover {
+    cursor: default;
+}
+
 .button {
     margin: 0px 5px 5px 5px;
 }
