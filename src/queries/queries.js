@@ -217,6 +217,7 @@ const deleteAllMoviesMutation = gql`
 export {
     getUsersQuery,
     getUserQuery,
+    getUserAuthQuery,
     addUserMutation,
     updateUserMutation,
     deleteUserMutation,

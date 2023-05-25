@@ -4,11 +4,11 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./style/index.css";
 
-import UIMain from "./components/UIMain";
-import UIAddForm from "./components/UIAddForm";
-import UIEditForm from "./components/UIEditForm";
-import UIShow from "./components/UIShow";
-import UIHomepage from "./components/UIHomepage";
+import Main from "./components/Main";
+import AddForm from "./components/AddForm";
+import EditForm from "./components/EditForm";
+import Show from "./components/Show";
+import Homepage from "./components/Homepage";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -33,11 +33,11 @@ ReactDOM.render(
         <div>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/movies/show/:id" component={UIShow} />
-                    <Route path="/movies/edit/:id" component={UIEditForm} />
-                    <Route path="/movies/new" component={UIAddForm} />
-                    <Route path="/main" component={UIMain} />
-                    <Route exact path="/" component={UIHomepage} />
+                    <Route path="/movies/show/:id" component={Show} />
+                    <Route path="/movies/edit/:id" component={EditForm} />
+                    <Route path="/movies/new" component={AddForm} />
+                    <Route path="/main" component={Main} />
+                    <Route exact path="/" component={Homepage} />
                 </Switch>
             </BrowserRouter>
         </div>

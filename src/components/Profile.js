@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { graphql } from "react-apollo";
 import { getUsersQuery, addUserMutation } from "../queries/queries";
 
 const Profile = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -22,7 +21,6 @@ const Profile = (props) => {
 
         if (existingUser) {
             console.log("Existing User: ", existingUser);
-            setRedirectToReferrer(true);
             return;
         } else {
             props.addUserMutation({
@@ -33,9 +31,7 @@ const Profile = (props) => {
                     picture: user.picture,
                 },
                 refetchQueries: [{ query: getUsersQuery }],
-            }).then(() => {
-                setRedirectToReferrer(true);
-            }).catch((error) => {
+            }).then(() => {}).catch((error) => {
                 console.error("Error Adding User: ", error);
             });
         }
@@ -67,14 +63,12 @@ const Profile = (props) => {
         return (
             <a
             className="nav-link nav-links profile dropdown-toggle"
-            href="#"
             role="button"
             data-bs-toggle="dropdown"
-            aria-expanded="false"
-        >
-                <img id="userPicture" src={user.picture} alt={user.name} />
-                {user.name}
-            </a>
+            aria-expanded="false">
+            <img id="userPicture" src={user.picture} alt={user.name} />
+            {user.name}
+        </a>
         );
     }
 
