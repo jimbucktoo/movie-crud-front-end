@@ -1,39 +1,86 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { graphql } from "react-apollo";
+import { getUsersQuery, addUserMutation } from "../queries/queries";
 
-const Profile = () => {
+const Profile = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            handleCreateUser(user);
+        }
+    }, [isAuthenticated, user]);
+
+    const handleCreateUser = (user) => {
+        console.log("Current User: ", user);
+
+        const existingUser = props.getUsersQuery.users.find(
+            (existingUser) => existingUser.email === user.email
+        );
+
+        if (existingUser) {
+            console.log("Existing User: ", existingUser);
+            setRedirectToReferrer(true);
+            return;
+        } else {
+            props.addUserMutation({
+                variables: {
+                    authId: user.sub,
+                    username: user.nickname,
+                    email: user.email,
+                    picture: user.picture,
+                },
+                refetchQueries: [{ query: getUsersQuery }],
+            }).then(() => {
+                setRedirectToReferrer(true);
+            }).catch((error) => {
+                console.error("Error Adding User: ", error);
+            });
+        }
+    };
 
     if (isLoading) {
-        return(
+        return (
             <div>
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                <div className="spinner-grow text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                <div className="spinner-grow text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                <div className="spinner-grow text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                <div className="spinner-grow text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                <div className="spinner-grow text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
             </div>
-        ); 
+        );
     }
 
     if (isAuthenticated) {
         return (
-            <a class="nav-link nav-links profile dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+            className="nav-link nav-links profile dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        >
                 <img id="userPicture" src={user.picture} alt={user.name} />
                 {user.name}
             </a>
         );
     }
-}
 
-export default Profile;
+    return null;
+};
+
+export default graphql(getUsersQuery, { name: "getUsersQuery" })(
+    graphql(addUserMutation, { name: "addUserMutation" })(Profile)
+);

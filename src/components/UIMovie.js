@@ -15,8 +15,7 @@ class UIMovie extends Component {
         this.props.deleteMovieMutation({
             variables: {
                 id: id,
-            },
-            refetchQueries: [{ query: getMoviesQuery }],
+            },refetchQueries: [{ query: getMoviesQuery }],
         });
     }
 

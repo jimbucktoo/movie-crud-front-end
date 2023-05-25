@@ -16,7 +16,7 @@ import { ApolloProvider } from "react-apollo";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const client = new ApolloClient({
-    uri: "https://moviecrud.onrender.com/graphql",
+    uri: "http://localhost:3001/graphql",
 });
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;

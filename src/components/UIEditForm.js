@@ -29,19 +29,16 @@ class UIEditForm extends Component {
         var rating = parseInt(event.target.rating.value);
         var poster_url = event.target.posterURL.value;
 
-        this.props
-            .updateMovieMutation({
-                variables: {
-                    id: id,
-                    title: title,
-                    directors: directors,
-                    year: year,
-                    rating: rating,
-                    poster_url: poster_url,
-                },
-                refetchQueries: [{ query: getMoviesQuery }],
-            })
-            .then(this.setState({ redirectToReferrer: true }));
+        this.props.updateMovieMutation({
+            variables: {
+                id: id,
+                title: title,
+                directors: directors,
+                year: year,
+                rating: rating,
+                poster_url: poster_url,
+            },refetchQueries: [{ query: getMoviesQuery }],
+        }).then(this.setState({ redirectToReferrer: true }));
     }
 
     render() {

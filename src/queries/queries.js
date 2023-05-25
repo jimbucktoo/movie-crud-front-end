@@ -1,5 +1,115 @@
 import { gql } from "apollo-boost";
 
+//User Queries & Mutations
+
+const getUsersQuery = gql`
+    {
+        users {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+const getUserQuery = gql`
+    query GetUser($id: ID!) {
+        user(id: $id) {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+const getUserAuthQuery = gql`
+    query GetUserAuth($authId: String!) {
+        userAuth(authId: $authId) {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+const addUserMutation = gql`
+    mutation (
+        $authId: String!
+        $username: String!
+        $email: String!
+        $picture: String!
+    ) {
+        addUser(
+            authId: $authId
+            username: $username
+            email: $email
+            picture: $picture
+        ) {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+const updateUserMutation = gql`
+    mutation (
+        $id: ID!
+        $authId: String!
+        $username: String!
+        $email: String!
+        $picture: String!
+    ) {
+        updateUser(
+            id: $id
+            authId: $authId
+            username: $username
+            email: $email
+            picture: $picture
+        ) {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+const deleteUserMutation = gql`
+    mutation ($id: ID!) {
+        deleteUser(id: $id) {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+const deleteAllUsersMutation = gql`
+    mutation {
+        deleteAllUsers {
+            id
+            authId
+            username
+            email
+            picture
+        }
+    }
+`;
+
+//Movie Queries & Mutations
+
 const getMoviesQuery = gql`
     {
         movies {
@@ -91,7 +201,7 @@ const deleteMovieMutation = gql`
     }
 `;
 
-const deleteAllMutation = gql`
+const deleteAllMoviesMutation = gql`
     mutation {
         deleteAll {
             id
@@ -105,10 +215,16 @@ const deleteAllMutation = gql`
 `;
 
 export {
+    getUsersQuery,
+    getUserQuery,
+    addUserMutation,
+    updateUserMutation,
+    deleteUserMutation,
+    deleteAllUsersMutation,
     getMoviesQuery,
     getMovieQuery,
     addMovieMutation,
     updateMovieMutation,
     deleteMovieMutation,
-    deleteAllMutation,
+    deleteAllMoviesMutation,
 };
