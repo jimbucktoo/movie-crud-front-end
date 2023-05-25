@@ -75,6 +75,4 @@ const Profile = (props) => {
     return null;
 };
 
-export default graphql(getUsersQuery, { name: "getUsersQuery" })(
-    graphql(addUserMutation, { name: "addUserMutation" })(Profile)
-);
+export default graphql(getUsersQuery, { name: "getUsersQuery" })(graphql(addUserMutation, { name: "addUserMutation" })(Profile));

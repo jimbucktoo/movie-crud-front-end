@@ -143,6 +143,7 @@ const addMovieMutation = gql`
         $year: Int!
         $rating: Int!
         $poster_url: String!
+        $user_id: Int!
     ) {
         addMovie(
             title: $title
@@ -150,6 +151,7 @@ const addMovieMutation = gql`
             year: $year
             rating: $rating
             poster_url: $poster_url
+            user_id: $user_id
         ) {
             id
             title
@@ -157,6 +159,7 @@ const addMovieMutation = gql`
             year
             rating
             poster_url
+            user_id
         }
     }
 `;

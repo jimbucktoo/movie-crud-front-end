@@ -45,9 +45,9 @@ export default compose(
         options: (props) => {
             return {
                 variables: {
-                    id: props.match.params.id,
-                },
+                    id: props.match.params.id
+                }
             };
-        },
+        }
     })
 )(Show);
