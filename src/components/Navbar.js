@@ -26,7 +26,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className="nav-link nav-links" to="/main">
+                            <Link className="nav-link nav-links" to="/movies">
                                 Movies
                             </Link>
                         </li>
@@ -41,14 +41,14 @@ const Navbar = () => {
                             <Profile />
                             <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a className="dropdown-item" href="#">
+                                    <Link className="dropdown-item" to="/movies/userMovies">
                                         My Movies
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="#">
+                                    <Link className="dropdown-item" to="/settings">
                                         Settings
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <LogoutButton />

@@ -6,7 +6,7 @@ import { getMoviesQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
-const Main = (props) => {
+const Movies = (props) => {
     const movies = props.getMoviesQuery.movies;
 
     if (movies !== undefined) {
@@ -39,4 +39,4 @@ const Main = (props) => {
     );
 };
 
-export default compose(graphql(getMoviesQuery, { name: "getMoviesQuery" }))(Main);
+export default compose(graphql(getMoviesQuery, { name: "getMoviesQuery" }))(Movies);
