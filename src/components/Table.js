@@ -6,7 +6,7 @@ const Table = (props) => {
     return (
         <div className="table">
             <ul className="list-group movie-list">
-                <Movie data={props.data} filterDelete={props.filterDelete} />
+                <Movie movieList={props.movieList}/>
             </ul>
         </div>
     );

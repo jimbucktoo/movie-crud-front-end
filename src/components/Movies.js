@@ -8,32 +8,33 @@ import "../style/App.css";
 
 const Movies = (props) => {
     const movies = props.getMoviesQuery.movies;
+    const movieList = 0;
 
-    if (movies !== undefined) {
+    if (movies != null) {
         return (
-            <div className="App">
+            <div>
                 <Navbar />
-                <Table />
+                <Table movieList={movieList}/>
             </div>
         );
     }
 
     return (
         <div className="App loader">
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-grow text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-grow text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-grow text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-grow text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
-            <div class="spinner-grow text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-grow text-primary" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
         </div>
     );

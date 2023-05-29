@@ -3,22 +3,22 @@ import { Link, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import { graphql } from "react-apollo";
-import { getMoviesQuery, getUserAuthQuery, addMovieMutation } from "../queries/queries";
+import { getMoviesQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const AddForm = (props) => {
     const { user, isAuthenticated } = useAuth0();
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-    const authId = isAuthenticated ? user.sub : "";
+    const authId = isAuthenticated ? user.sub : null;
 
     useEffect(() => {
         if (authId) {
-            props.getUserAuthQuery.refetch({ authId });
+            props.getUserByAuthIdQuery.refetch({ authId });
         }
-    }, [authId, props.getUserAuthQuery]);
+    }, [authId, props.getUserByAuthIdQuery]);
 
-    const userAuth = props.getUserAuthQuery.userAuth;
+    const userAuth = props.getUserByAuthIdQuery.userByAuthId;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -28,7 +28,7 @@ const AddForm = (props) => {
         const rating = parseInt(event.target.rating.value);
         const poster_url = event.target.posterURL.value;
 
-        if (userAuth !== null) {
+        if (userAuth) {
             const user_id = parseInt(userAuth.id);
             props.addMovieMutation({
                 variables: {
@@ -45,7 +45,7 @@ const AddForm = (props) => {
     };
 
     if (redirectToReferrer) {
-        return <Redirect to="/main" />;
+        return <Redirect to="/movies" />;
     }
 
     if(isAuthenticated) {
@@ -111,7 +111,7 @@ const AddForm = (props) => {
                             <button className="btn btn-primary button" type="submit">
                                 Submit
                             </button>
-                            <Link to="/main" className="btn btn-danger button">
+                            <Link to="/movies" className="btn btn-danger button">
                                 Cancel
                             </Link>
                         </div>
@@ -121,22 +121,24 @@ const AddForm = (props) => {
         );
     } else {
         return(
-            <Navbar />
+            <div>
+                <Navbar />
+            </div>
         );
     }
 };
 
 export default compose(
     graphql(getMoviesQuery, { name: "getMoviesQuery" }),
-    graphql(getUserAuthQuery, {
+    graphql(getUserByAuthIdQuery, {
         options: (props) => {
             return {
                 variables: {
-                    authId: props.authId
+                    authId: null
                 }
             };
         },
-        name: 'getUserAuthQuery'
+        name: 'getUserByAuthIdQuery'
     }),
     graphql(addMovieMutation, { name: "addMovieMutation" })
 )(AddForm);

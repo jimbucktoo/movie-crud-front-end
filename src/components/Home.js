@@ -1,14 +1,13 @@
 import React from "react";
-import logo from "../assets/movieCrud.png";
-import "../style/App.css";
+import Logo from "../assets/movieCrud.png";
 import LoginButton from "./LoginButton";
+import "../style/App.css";
 
 const Home = () => {
     return (
         <div className="container">
-            <img className="logo" alt="Logo" src={logo} />
+            <img className="logo" alt="MovieCrud Logo" src={Logo} />
             <h1 className="app-title">MovieCrud</h1>
-            <br />
             <LoginButton />
         </div>
     );

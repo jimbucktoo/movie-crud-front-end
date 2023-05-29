@@ -14,9 +14,9 @@ const getUsersQuery = gql`
     }
 `;
 
-const getUserQuery = gql`
-    query GetUser($id: ID!) {
-        user(id: $id) {
+const getUserByIdQuery = gql`
+    query GetUserById($id: ID!) {
+        userById(id: $id) {
             id
             authId
             username
@@ -26,9 +26,9 @@ const getUserQuery = gql`
     }
 `;
 
-const getUserAuthQuery = gql`
-    query GetUserAuth($authId: String!) {
-        userAuth(authId: $authId) {
+const getUserByAuthIdQuery = gql`
+    query GetUserByAuthId($authId: String!) {
+        userByAuthId(authId: $authId) {
             id
             authId
             username
@@ -123,9 +123,22 @@ const getMoviesQuery = gql`
     }
 `;
 
-const getMovieQuery = gql`
-    query GetMovie($id: ID!) {
-        movie(id: $id) {
+const getMoviesByUserIdQuery = gql`
+    query GetMoviesByUserId($id: ID!) {
+        moviesByUserId(id: $id) {
+            id
+            title
+            directors
+            year
+            rating
+            poster_url
+        }
+    }
+`;
+
+const getMovieByIdQuery = gql`
+    query GetMovieById($id: ID!) {
+        movieById(id: $id) {
             id
             title
             directors
@@ -219,14 +232,15 @@ const deleteAllMoviesMutation = gql`
 
 export {
     getUsersQuery,
-    getUserQuery,
-    getUserAuthQuery,
+    getUserByIdQuery,
+    getUserByAuthIdQuery,
     addUserMutation,
     updateUserMutation,
     deleteUserMutation,
     deleteAllUsersMutation,
     getMoviesQuery,
-    getMovieQuery,
+    getMoviesByUserIdQuery,
+    getMovieByIdQuery,
     addMovieMutation,
     updateMovieMutation,
     deleteMovieMutation,

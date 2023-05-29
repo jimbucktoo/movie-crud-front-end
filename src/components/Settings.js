@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import "../style/App.css";
 
-const Settings = (props) => {
+const Settings = () => {
 
     return (
         <div>

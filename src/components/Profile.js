@@ -13,14 +13,11 @@ const Profile = (props) => {
     }, [isAuthenticated, user]);
 
     const handleCreateUser = (user) => {
-        console.log("Current User: ", user);
-
         const existingUser = props.getUsersQuery.users.find(
             (existingUser) => existingUser.email === user.email
         );
 
         if (existingUser) {
-            console.log("Existing User: ", existingUser);
             return;
         } else {
             props.addUserMutation({
@@ -61,14 +58,14 @@ const Profile = (props) => {
 
     if (isAuthenticated) {
         return (
-            <a
+            <div
             className="nav-link nav-links profile dropdown-toggle"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false">
             <img id="userPicture" src={user.picture} alt={user.name} />
             {user.name}
-        </a>
+        </div>
         );
     }
 

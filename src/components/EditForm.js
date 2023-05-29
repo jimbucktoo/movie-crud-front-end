@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import { graphql } from "react-apollo";
-import { getMoviesQuery, getMovieQuery, updateMovieMutation } from "../queries/queries";
+import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const EditForm = (props) => {
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
+    const movie = props.getMovieByIdQuery.movieById
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -33,12 +35,10 @@ const EditForm = (props) => {
     };
 
     if (redirectToReferrer) {
-        return <Redirect to="/main" />;
+        return <Redirect to="/movies" />;
     }
 
-    const movie = props.data.movie
-
-    if(movie !== undefined) {
+    if(movie != null) {
         return (
             <div>
                 <Navbar />
@@ -101,11 +101,11 @@ const EditForm = (props) => {
                             id="inputPosterURL"
                             placeholder={"Poster URL: " + movie.poster_url}/>
                         </div>
-                        <div class="movie-buttons">
+                        <div className="movie-buttons">
                             <button className="btn btn-primary button" type="submit">
                                 Edit
                             </button>
-                            <Link to="/main" className="btn btn-danger button">
+                            <Link to="/movies" className="btn btn-danger button">
                                 Cancel
                             </Link>
                         </div>
@@ -127,7 +127,7 @@ const EditForm = (props) => {
 
 export default compose(
     graphql(getMoviesQuery, { name: "getMoviesQuery" }),
-    graphql(getMovieQuery, {
+    graphql(getMovieByIdQuery, {
         options: (props) => {
             return {
                 variables: {
@@ -135,6 +135,7 @@ export default compose(
                 },
             };
         },
+        name: 'getMovieByIdQuery'
     }),
     graphql(updateMovieMutation, { name: "updateMovieMutation" })
 )(EditForm);

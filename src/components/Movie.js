@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { graphql } from "react-apollo";
-import { getMoviesQuery, deleteMovieMutation } from "../queries/queries";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getMoviesQuery, getMoviesByUserIdQuery, getUserByAuthIdQuery, deleteMovieMutation } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const Movie = (props) => {
+    const { user, isAuthenticated } = useAuth0();
+
+    let movies = props.getMoviesQuery.movies;
+    let userMovies = props.getMoviesByUserIdQuery.moviesByUserId;
+    let userAuth = props.getUserByAuthIdQuery.userByAuthId;
+
+    const authId = isAuthenticated ? user.sub : null;
+    const id = userAuth ? userAuth.id : null;
 
     const handleDelete = (id) => {
         props.deleteMovieMutation({
@@ -15,9 +24,22 @@ const Movie = (props) => {
         });
     };
 
-    const movies = props.getMoviesQuery.movies;
+    useEffect(() => {
+        if (authId) {
+            props.getUserByAuthIdQuery.refetch({ authId });
+        }
+    }, [authId, props.getUserByAuthIdQuery]);
 
-    if (movies !== undefined) {
+    useEffect(() => {
+        if (id) {
+            props.getMoviesByUserIdQuery.refetch({ id });
+        }
+    }, [id, props.getMoviesByUserIdQuery]);
+
+    if (movies && userMovies) {
+        if(props.movieList === 1){
+            movies = userMovies;
+        }
         return movies.map((movie) => {
             const editLink = "/movies/edit/" + movie.id;
             const showLink = "/movies/show/" + movie.id;
@@ -37,7 +59,7 @@ const Movie = (props) => {
                         </div>
                         <div className="movie-buttons">
                             <Link to={editLink} className="btn btn-primary button">Edit</Link>
-                            <Link to="/main" className="ml-5px btn btn-danger button" onClick={() => handleDelete(movie.id)}>Delete</Link>
+                            <Link to="/movies" className="ml-5px btn btn-danger button" onClick={() => handleDelete(movie.id)}>Delete</Link>
                         </div>
                     </div>
                 </li>
@@ -50,5 +72,25 @@ const Movie = (props) => {
 
 export default compose(
     graphql(getMoviesQuery, { name: "getMoviesQuery" }),
+    graphql(getUserByAuthIdQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    authId: null
+                }
+            };
+        },
+        name: 'getUserByAuthIdQuery'
+    }),
+    graphql(getMoviesByUserIdQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    id: null
+                }
+            };
+        },
+        name: 'getMoviesByUserIdQuery'
+    }),
     graphql(deleteMovieMutation, { name: "deleteMovieMutation" })
 )(Movie);

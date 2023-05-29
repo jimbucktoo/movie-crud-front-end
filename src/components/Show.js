@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { graphql } from "react-apollo";
-import { getMovieQuery } from "../queries/queries";
+import { getMovieByIdQuery } from "../queries/queries";
 import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const Show = (props) => {
-    const movie = props.data.movie;
+    const movie = props.getMovieByIdQuery.movieById;
 
-    if (movie !== undefined) {
+    if (movie != null) {
         return (
             <div>
                 <Navbar />
@@ -41,13 +41,14 @@ const Show = (props) => {
 };
 
 export default compose(
-    graphql(getMovieQuery, {
+    graphql(getMovieByIdQuery, {
         options: (props) => {
             return {
                 variables: {
                     id: props.match.params.id
                 }
             };
-        }
+        },
+        name: 'getMovieByIdQuery'
     })
 )(Show);
