@@ -1,36 +1,44 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
-import { graphql } from "react-apollo";
+import { useQuery, useMutation } from '@apollo/client';
 import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries";
-import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const EditForm = (props) => {
+    const goBack = () => {
+        props.history.goBack();
+    };
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-    const movie = props.getMovieByIdQuery.movieById
+    const [ updateMovie ] = useMutation(updateMovieMutation);
+    const { id } = props.match.params;
+    const { data: movieData } = useQuery(getMovieByIdQuery, {
+        variables: {
+            id: id ? id : null
+        }
+    });
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const { id } = props.match.params;
         const title = event.target.title.value;
         const directors = event.target.directors.value;
         const year = parseInt(event.target.year.value);
         const rating = parseInt(event.target.rating.value);
         const poster_url = event.target.posterURL.value;
 
-        props.updateMovieMutation({
+        updateMovie({
             variables: {
                 id: id,
                 title: title,
                 directors: directors,
                 year: year,
                 rating: rating,
-                poster_url: poster_url,
+                poster_url: poster_url
             },
-            refetchQueries: [{ query: getMoviesQuery }],
+            refetchQueries: [{ query: getMoviesQuery }]
+        }).then(() => {}).catch((error) => {
+            console.error("Error Updating Movie: ", error);
         }).then(() => setRedirectToReferrer(true));
     };
 
@@ -38,14 +46,15 @@ const EditForm = (props) => {
         return <Redirect to="/movies" />;
     }
 
-    if(movie != null) {
+    if(movieData != null) {
+        const movie = movieData.movieById;
         return (
             <div>
                 <Navbar />
                 <br />
                 <div className="EditForm movie-edit">
                     <form onSubmit={handleSubmit}>
-                        <h6>Edit Movie: {movie.title}</h6>
+                        <h3>Edit Movie: {movie.title}</h3>
                         <br />
                         <img alt="Poster URL" src={movie.poster_url} className="poster-url" />
                         <br />
@@ -105,7 +114,7 @@ const EditForm = (props) => {
                             <button className="btn btn-primary button" type="submit">
                                 Edit
                             </button>
-                            <Link to="/movies" className="btn btn-danger button">
+                            <Link to="#" className="btn btn-danger button" onClick={goBack}>
                                 Cancel
                             </Link>
                         </div>
@@ -125,17 +134,4 @@ const EditForm = (props) => {
 
 };
 
-export default compose(
-    graphql(getMoviesQuery, { name: "getMoviesQuery" }),
-    graphql(getMovieByIdQuery, {
-        options: (props) => {
-            return {
-                variables: {
-                    id: props.match.params.id,
-                },
-            };
-        },
-        name: 'getMovieByIdQuery'
-    }),
-    graphql(updateMovieMutation, { name: "updateMovieMutation" })
-)(EditForm);
+export default EditForm;

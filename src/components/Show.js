@@ -1,14 +1,19 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { graphql } from "react-apollo";
+import { useQuery } from '@apollo/client';
 import { getMovieByIdQuery } from "../queries/queries";
-import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const Show = (props) => {
-    const movie = props.getMovieByIdQuery.movieById;
+    const { id } = props.match.params;
+    const { data: movieData } = useQuery(getMovieByIdQuery, {
+        variables: {
+            id: id ? id : null
+        }
+    });
 
-    if (movie != null) {
+    if (movieData != null) {
+        const movie = movieData.movieById;
         return (
             <div>
                 <Navbar />
@@ -40,15 +45,4 @@ const Show = (props) => {
     }
 };
 
-export default compose(
-    graphql(getMovieByIdQuery, {
-        options: (props) => {
-            return {
-                variables: {
-                    id: props.match.params.id
-                }
-            };
-        },
-        name: 'getMovieByIdQuery'
-    })
-)(Show);
+export default Show;

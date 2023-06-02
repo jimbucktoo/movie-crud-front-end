@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
-import { graphql } from "react-apollo";
+import { useQuery, useMutation } from '@apollo/client';
 import { getMoviesQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries";
-import { flowRight as compose } from "lodash";
 import "../style/App.css";
 
 const AddForm = (props) => {
+    const goBack = () => {
+        props.history.goBack();
+    };
     const { user, isAuthenticated } = useAuth0();
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-    const authId = isAuthenticated ? user.sub : null;
-
-    useEffect(() => {
-        if (authId) {
-            props.getUserByAuthIdQuery.refetch({ authId });
+    const [ addMovie ] = useMutation(addMovieMutation);
+    const { data: userData } = useQuery(getUserByAuthIdQuery, {
+        variables: {
+            authId: isAuthenticated ? user.sub : null
         }
-    }, [authId, props.getUserByAuthIdQuery]);
-
-    const userAuth = props.getUserByAuthIdQuery.userByAuthId;
+    });
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -27,21 +26,21 @@ const AddForm = (props) => {
         const year = parseInt(event.target.year.value);
         const rating = parseInt(event.target.rating.value);
         const poster_url = event.target.posterURL.value;
+        const user_id = userData.userByAuthId.id;
 
-        if (userAuth) {
-            const user_id = parseInt(userAuth.id);
-            props.addMovieMutation({
-                variables: {
-                    title: title,
-                    directors: directors,
-                    year: year,
-                    rating: rating,
-                    poster_url: poster_url,
-                    user_id: user_id
-                },
-                refetchQueries: [{ query: getMoviesQuery }],
-            }).then(() => setRedirectToReferrer(true));
-        }
+        addMovie({
+            variables: {
+                title: title,
+                directors: directors,
+                year: year,
+                rating: rating,
+                poster_url: poster_url,
+                user_id: user_id
+            },
+            refetchQueries: [{ query: getMoviesQuery }]
+        }).then(() => {}).catch((error) => {
+            console.error("Error Adding Movie: ", error);
+        }).then(() => setRedirectToReferrer(true));
     };
 
     if (redirectToReferrer) {
@@ -55,7 +54,8 @@ const AddForm = (props) => {
                 <div className="AddForm movie-add">
                     <form onSubmit={handleSubmit}>
                         <br />
-                        <label>Add A Movie</label>
+                        <h3>Add Movie:</h3>
+                        <br />
                         <div className="form-group">
                             <input
                             required
@@ -111,7 +111,7 @@ const AddForm = (props) => {
                             <button className="btn btn-primary button" type="submit">
                                 Submit
                             </button>
-                            <Link to="/movies" className="btn btn-danger button">
+                            <Link to="#" className="btn btn-danger button" onClick={goBack}>
                                 Cancel
                             </Link>
                         </div>
@@ -128,17 +128,4 @@ const AddForm = (props) => {
     }
 };
 
-export default compose(
-    graphql(getMoviesQuery, { name: "getMoviesQuery" }),
-    graphql(getUserByAuthIdQuery, {
-        options: (props) => {
-            return {
-                variables: {
-                    authId: null
-                }
-            };
-        },
-        name: 'getUserByAuthIdQuery'
-    }),
-    graphql(addMovieMutation, { name: "addMovieMutation" })
-)(AddForm);
+export default AddForm;

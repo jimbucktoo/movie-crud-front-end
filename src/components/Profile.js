@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { graphql } from "react-apollo";
-import { getUsersQuery, addUserMutation } from "../queries/queries";
+import { useQuery, useMutation } from '@apollo/client';
+import { getUsersQuery, addUserMutation } from '../queries/queries';
 
 const Profile = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const { data: usersData } = useQuery(getUsersQuery);
+    const [ addUser ] = useMutation(addUserMutation);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -13,24 +15,26 @@ const Profile = (props) => {
     }, [isAuthenticated, user]);
 
     const handleCreateUser = (user) => {
-        const existingUser = props.getUsersQuery.users.find(
-            (existingUser) => existingUser.email === user.email
-        );
+        if (usersData) {
+            const existingUser = usersData.users.find(
+                (existingUser) => existingUser.email === user.email
+            );
 
-        if (existingUser) {
-            return;
-        } else {
-            props.addUserMutation({
-                variables: {
-                    authId: user.sub,
-                    username: user.nickname,
-                    email: user.email,
-                    picture: user.picture,
-                },
-                refetchQueries: [{ query: getUsersQuery }],
-            }).then(() => {}).catch((error) => {
-                console.error("Error Adding User: ", error);
-            });
+            if (existingUser) {
+                return;
+            } else {
+                addUser({
+                    variables: {
+                        authId: user.sub,
+                        username: user.nickname,
+                        email: user.email,
+                        picture: user.picture
+                    },
+                    refetchQueries: [{ query: getUsersQuery }]
+                }).then(() => {}).catch((error) => {
+                    console.error("Error Adding User: ", error);
+                });
+            }
         }
     };
 
@@ -72,4 +76,4 @@ const Profile = (props) => {
     return null;
 };
 
-export default graphql(getUsersQuery, { name: "getUsersQuery" })(graphql(addUserMutation, { name: "addUserMutation" })(Profile));
+export default Profile;

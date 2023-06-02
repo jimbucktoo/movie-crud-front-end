@@ -1,45 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { graphql } from "react-apollo";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getMoviesQuery, getMoviesByUserIdQuery, getUserByAuthIdQuery, deleteMovieMutation } from "../queries/queries";
-import { flowRight as compose } from "lodash";
+import { useMutation } from '@apollo/client';
+import { getMoviesQuery, getMoviesByUserIdQuery, deleteMovieMutation } from '../queries/queries';
 import "../style/App.css";
 
 const Movie = (props) => {
-    const { user, isAuthenticated } = useAuth0();
-
-    let movies = props.getMoviesQuery.movies;
-    let userMovies = props.getMoviesByUserIdQuery.moviesByUserId;
-    let userAuth = props.getUserByAuthIdQuery.userByAuthId;
-
-    const authId = isAuthenticated ? user.sub : null;
-    const id = userAuth ? userAuth.id : null;
+    const { movieList, movies, refetchMovies } = props;
+    const [deleteMovie ] = useMutation(deleteMovieMutation);
 
     const handleDelete = (id) => {
-        props.deleteMovieMutation({
+        deleteMovie({
             variables: {
-                id: id,
-            },refetchQueries: [{ query: getMoviesQuery }],
-        });
+                id: id
+            },
+            refetchQueries: [
+                { query: getMoviesQuery },
+                { query: getMoviesByUserIdQuery }
+            ],
+        }).then(() => refetchMovies());
     };
 
-    useEffect(() => {
-        if (authId) {
-            props.getUserByAuthIdQuery.refetch({ authId });
-        }
-    }, [authId, props.getUserByAuthIdQuery]);
-
-    useEffect(() => {
-        if (id) {
-            props.getMoviesByUserIdQuery.refetch({ id });
-        }
-    }, [id, props.getMoviesByUserIdQuery]);
-
-    if (movies && userMovies) {
-        if(props.movieList === 1){
-            movies = userMovies;
-        }
+    if (movies) {
         return movies.map((movie) => {
             const editLink = "/movies/edit/" + movie.id;
             const showLink = "/movies/show/" + movie.id;
@@ -59,7 +40,7 @@ const Movie = (props) => {
                         </div>
                         <div className="movie-buttons">
                             <Link to={editLink} className="btn btn-primary button">Edit</Link>
-                            <Link to="/movies" className="ml-5px btn btn-danger button" onClick={() => handleDelete(movie.id)}>Delete</Link>
+                            <Link to={movieList} className="ml-5px btn btn-danger button" onClick={() => handleDelete(movie.id)}>Delete</Link>
                         </div>
                     </div>
                 </li>
@@ -70,27 +51,4 @@ const Movie = (props) => {
     }
 };
 
-export default compose(
-    graphql(getMoviesQuery, { name: "getMoviesQuery" }),
-    graphql(getUserByAuthIdQuery, {
-        options: (props) => {
-            return {
-                variables: {
-                    authId: null
-                }
-            };
-        },
-        name: 'getUserByAuthIdQuery'
-    }),
-    graphql(getMoviesByUserIdQuery, {
-        options: (props) => {
-            return {
-                variables: {
-                    id: null
-                }
-            };
-        },
-        name: 'getMoviesByUserIdQuery'
-    }),
-    graphql(deleteMovieMutation, { name: "deleteMovieMutation" })
-)(Movie);
+export default Movie;

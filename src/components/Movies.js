@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Table from "./Table";
-import { graphql } from "react-apollo";
-import { getMoviesQuery } from "../queries/queries";
-import { flowRight as compose } from "lodash";
+import { useQuery } from '@apollo/client';
+import { getMoviesQuery } from '../queries/queries';
 import "../style/App.css";
 
 const Movies = (props) => {
-    const movies = props.getMoviesQuery.movies;
-    const movieList = 0;
+    const { data: moviesData, refetch: moviesRefetch } = useQuery(getMoviesQuery);
+    const [movies, setMovies] = useState(null);
 
-    if (movies != null) {
+    useEffect(() => {
+        if (moviesData) {
+            setMovies(moviesData.movies);
+        }
+    }, [moviesData]);
+
+    if (moviesData != null) {
+        const movieList = "/movies";
         return (
             <div>
                 <Navbar />
-                <Table movieList={movieList}/>
+                <Table movieList={movieList} movies={movies} refetchMovies={moviesRefetch}/>
             </div>
         );
     }
@@ -40,4 +46,4 @@ const Movies = (props) => {
     );
 };
 
-export default compose(graphql(getMoviesQuery, { name: "getMoviesQuery" }))(Movies);
+export default Movies;
