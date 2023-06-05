@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from "@apollo/client";
 import { getMoviesQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries";
-import "../style/App.css";
+import "../style/style.css";
 
-const AddForm = (props) => {
+const AddMovie = (props) => {
     const goBack = () => {
         props.history.goBack();
     };
@@ -51,11 +51,9 @@ const AddForm = (props) => {
         return (
             <div>
                 <Navbar />
-                <div className="AddForm movie-add">
+                <div className="AddMovie">
+                    <h3 className="heading">Add Movie:</h3>
                     <form onSubmit={handleSubmit}>
-                        <br />
-                        <h3>Add Movie:</h3>
-                        <br />
                         <div className="form-group">
                             <input
                             required
@@ -108,10 +106,10 @@ const AddForm = (props) => {
                             placeholder="Poster URL"/>
                         </div>
                         <div className="movie-buttons">
-                            <button className="btn btn-primary button" type="submit">
+                            <button className="btn btn-primary movie-button" type="submit">
                                 Submit
                             </button>
-                            <Link to="#" className="btn btn-danger button" onClick={goBack}>
+                            <Link to="#" className="btn btn-danger movie-button" onClick={goBack}>
                                 Cancel
                             </Link>
                         </div>
@@ -128,4 +126,4 @@ const AddForm = (props) => {
     }
 };
 
-export default AddForm;
+export default AddMovie;

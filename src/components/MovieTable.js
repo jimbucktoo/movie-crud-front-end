@@ -1,10 +1,10 @@
 import React from "react";
 import Movie from "./Movie";
-import "../style/App.css";
+import "../style/style.css";
 
-const Table = (props) => {
+const MovieTable = (props) => {
     return (
-        <div className="table">
+        <div className="movie-table">
             <ul className="list-group movie-list">
                 <Movie movieList={props.movieList} movies={props.movies} refetchMovies={props.refetchMovies}/>
             </ul>
@@ -12,4 +12,4 @@ const Table = (props) => {
     );
 };
 
-export default Table;
+export default MovieTable;

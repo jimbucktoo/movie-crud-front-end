@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../assets/movieCrud.png";
 import LoginButton from "./LoginButton";
-import "../style/App.css";
+import "../style/style.css";
 
 const Home = () => {
     return (

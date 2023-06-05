@@ -3,9 +3,9 @@ import { Link, Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useQuery, useMutation } from '@apollo/client';
 import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries";
-import "../style/App.css";
+import "../style/style.css";
 
-const EditForm = (props) => {
+const EditMovie = (props) => {
     const goBack = () => {
         props.history.goBack();
     };
@@ -51,14 +51,10 @@ const EditForm = (props) => {
         return (
             <div>
                 <Navbar />
-                <br />
-                <div className="EditForm movie-edit">
+                <div className="EditMovie">
+                    <h3 className="heading">Edit Movie: {movie.title}</h3>
+                    <img alt="Poster" src={movie.poster_url} className="poster" />
                     <form onSubmit={handleSubmit}>
-                        <h3>Edit Movie: {movie.title}</h3>
-                        <br />
-                        <img alt="Poster URL" src={movie.poster_url} className="poster-url" />
-                        <br />
-                        <br />
                         <div className="form-group">
                             <input
                             required
@@ -111,17 +107,15 @@ const EditForm = (props) => {
                             placeholder={"Poster URL: " + movie.poster_url}/>
                         </div>
                         <div className="movie-buttons">
-                            <button className="btn btn-primary button" type="submit">
+                            <button className="btn btn-primary movie-button" type="submit">
                                 Edit
                             </button>
-                            <Link to="#" className="btn btn-danger button" onClick={goBack}>
+                            <Link to="#" className="btn btn-danger movie-button" onClick={goBack}>
                                 Cancel
                             </Link>
                         </div>
                     </form>
                 </div>
-                <br />
-                <br />
             </div>
         );
     } else {
@@ -134,4 +128,4 @@ const EditForm = (props) => {
 
 };
 
-export default EditForm;
+export default EditMovie;

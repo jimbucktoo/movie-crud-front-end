@@ -62,14 +62,10 @@ const Profile = (props) => {
 
     if (isAuthenticated) {
         return (
-            <div
-            className="nav-link nav-links profile dropdown-toggle"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <img id="userPicture" src={user.picture} alt={user.name} />
-            {user.name}
-        </div>
+            <div className="nav-link nav-links Profile dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img id="userPicture" src={user.picture} alt={user.name} />
+                {user.name}
+            </div>
         );
     }
 

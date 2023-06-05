@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
 import logo from "../assets/movieCrud.png";
-import "../style/App.css";
+import "../style/style.css";
 
 const Navbar = () => {
     return (
@@ -31,7 +31,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link nav-links" to="/movies/new">
+                            <Link className="nav-link nav-links" to="/movies/add">
                                 Add To List
                             </Link>
                         </li>

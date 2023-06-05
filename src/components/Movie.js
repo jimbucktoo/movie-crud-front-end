@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { getMoviesQuery, getMoviesByUserIdQuery, deleteMovieMutation } from '../queries/queries';
-import "../style/App.css";
+import "../style/style.css";
 
 const Movie = (props) => {
     const { movieList, movies, refetchMovies } = props;
@@ -26,21 +26,21 @@ const Movie = (props) => {
             const showLink = "/movies/show/" + movie.id;
             return (
                 <li key={movie.id} className="list-group-item d-flex justify-content-between align-items-start movie-item">
-                    <div className="image-box">
-                        <img className="poster-image" alt="poster" src={movie.poster_url} />
+                    <div className="image-container">
+                        <img className="movie-poster" alt="poster" src={movie.poster_url} />
                     </div>
                     <div className="ms-2 me-auto">
                         <div className="movie-info">
                             <div className="fw-bold">
-                                <Link className="title" to={showLink}>{movie.title}</Link>
+                                <Link className="movie-title" to={showLink}>{movie.title}</Link>
                             </div>
                             <div>Directors: {movie.directors}</div>
                             <div>Year: {movie.year}</div>
                             <div>Rating: {movie.rating}</div>
                         </div>
                         <div className="movie-buttons">
-                            <Link to={editLink} className="btn btn-primary button">Edit</Link>
-                            <Link to={movieList} className="ml-5px btn btn-danger button" onClick={() => handleDelete(movie.id)}>Delete</Link>
+                            <Link to={editLink} className="btn btn-primary movie-button">Edit</Link>
+                            <Link to={movieList} className="ml-5px btn btn-danger movie-button" onClick={() => handleDelete(movie.id)}>Delete</Link>
                         </div>
                     </div>
                 </li>

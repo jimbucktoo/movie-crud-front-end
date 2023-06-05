@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Table from "./Table";
+import MovieTable from "./MovieTable";
 import { useQuery } from '@apollo/client';
 import { getMoviesQuery } from '../queries/queries';
-import "../style/App.css";
+import "../style/style.css";
 
 const Movies = (props) => {
     const { data: moviesData, refetch: moviesRefetch } = useQuery(getMoviesQuery);
@@ -20,13 +20,13 @@ const Movies = (props) => {
         return (
             <div>
                 <Navbar />
-                <Table movieList={movieList} movies={movies} refetchMovies={moviesRefetch}/>
+                <MovieTable movieList={movieList} movies={movies} refetchMovies={moviesRefetch}/>
             </div>
         );
     }
 
     return (
-        <div className="App loader">
+        <div className="loader">
             <div className="spinner-grow text-primary" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Table from "./Table";
+import MovieTable from "./MovieTable";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery } from '@apollo/client';
 import { getMoviesByUserIdQuery, getUserByAuthIdQuery } from '../queries/queries';
+import "../style/style.css";
 
 const UserMovies = (props) => {
     const { user, isAuthenticated } = useAuth0();
@@ -30,13 +31,13 @@ const UserMovies = (props) => {
         return (
             <div>
                 <Navbar />
-                <Table movieList={movieList} movies={userMovies} refetchMovies={userMoviesRefetch}/>
+                <MovieTable movieList={movieList} movies={userMovies} refetchMovies={userMoviesRefetch}/>
             </div>
         );
     }
 
     return (
-        <div className="App loader">
+        <div className="loader">
             <div className="spinner-grow text-primary" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
