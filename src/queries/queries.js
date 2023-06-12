@@ -1,6 +1,4 @@
-import { gql } from '@apollo/client';
-
-//User Queries & Mutations
+import { gql } from '@apollo/client'
 
 const getUsersQuery = gql`
     {
@@ -12,7 +10,7 @@ const getUsersQuery = gql`
             picture
         }
     }
-`;
+`
 
 const getUserByIdQuery = gql`
     query GetUserById($id: ID!) {
@@ -24,7 +22,7 @@ const getUserByIdQuery = gql`
             picture
         }
     }
-`;
+`
 
 const getUserByAuthIdQuery = gql`
     query GetUserByAuthId($authId: String!) {
@@ -36,7 +34,25 @@ const getUserByAuthIdQuery = gql`
             picture
         }
     }
-`;
+`
+
+const authenticateUserMutation = gql`
+    mutation (
+        $authId: String!
+        $username: String!
+        $email: String!
+        $picture: String!
+    ) {
+        authenticateUser(
+            authId: $authId
+            username: $username
+            email: $email
+            picture: $picture
+        ) {
+            token
+        }
+    }
+`
 
 const addUserMutation = gql`
     mutation (
@@ -51,14 +67,10 @@ const addUserMutation = gql`
             email: $email
             picture: $picture
         ) {
-            id
-            authId
-            username
-            email
-            picture
+            token
         }
     }
-`;
+`
 
 const updateUserMutation = gql`
     mutation (
@@ -82,7 +94,7 @@ const updateUserMutation = gql`
             picture
         }
     }
-`;
+`
 
 const deleteUserMutation = gql`
     mutation ($id: ID!) {
@@ -94,7 +106,7 @@ const deleteUserMutation = gql`
             picture
         }
     }
-`;
+`
 
 const deleteAllUsersMutation = gql`
     mutation {
@@ -106,9 +118,7 @@ const deleteAllUsersMutation = gql`
             picture
         }
     }
-`;
-
-//Movie Queries & Mutations
+`
 
 const getMoviesQuery = gql`
     {
@@ -121,7 +131,7 @@ const getMoviesQuery = gql`
             poster_url
         }
     }
-`;
+`
 
 const getMoviesByUserIdQuery = gql`
     query GetMoviesByUserId($id: ID!) {
@@ -134,7 +144,7 @@ const getMoviesByUserIdQuery = gql`
             poster_url
         }
     }
-`;
+`
 
 const getMovieByIdQuery = gql`
     query GetMovieById($id: ID!) {
@@ -147,7 +157,7 @@ const getMovieByIdQuery = gql`
             poster_url
         }
     }
-`;
+`
 
 const addMovieMutation = gql`
     mutation (
@@ -175,7 +185,7 @@ const addMovieMutation = gql`
             user_id
         }
     }
-`;
+`
 
 const updateMovieMutation = gql`
     mutation (
@@ -202,7 +212,7 @@ const updateMovieMutation = gql`
             poster_url
         }
     }
-`;
+`
 
 const deleteMovieMutation = gql`
     mutation ($id: ID!) {
@@ -215,7 +225,7 @@ const deleteMovieMutation = gql`
             poster_url
         }
     }
-`;
+`
 
 const deleteAllMoviesMutation = gql`
     mutation {
@@ -228,12 +238,13 @@ const deleteAllMoviesMutation = gql`
             poster_url
         }
     }
-`;
+`
 
 export {
     getUsersQuery,
     getUserByIdQuery,
     getUserByAuthIdQuery,
+    authenticateUserMutation,
     addUserMutation,
     updateUserMutation,
     deleteUserMutation,
@@ -245,4 +256,4 @@ export {
     updateMovieMutation,
     deleteMovieMutation,
     deleteAllMoviesMutation,
-};
+}

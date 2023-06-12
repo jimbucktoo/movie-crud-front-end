@@ -1,7 +1,7 @@
-import React from "react";
-import Logo from "../assets/movieCrud.png";
-import LoginButton from "./LoginButton";
-import "../style/style.css";
+import React from "react"
+import Logo from "../assets/movieCrud.png"
+import LoginButton from "./LoginButton"
+import "../style/style.css"
 
 const Home = () => {
     return (
@@ -10,7 +10,7 @@ const Home = () => {
             <h1 className="app-title">MovieCrud</h1>
             <LoginButton />
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home

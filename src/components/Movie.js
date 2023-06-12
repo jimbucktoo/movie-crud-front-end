@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/client';
-import { getMoviesQuery, getMoviesByUserIdQuery, deleteMovieMutation } from '../queries/queries';
-import "../style/style.css";
+import React from "react"
+import { Link } from "react-router-dom"
+import { useMutation } from '@apollo/client'
+import { getMoviesQuery, getMoviesByUserIdQuery, deleteMovieMutation } from '../queries/queries'
+import "../style/style.css"
 
 const Movie = (props) => {
-    const { movieList, movies, refetchMovies } = props;
-    const [deleteMovie ] = useMutation(deleteMovieMutation);
+    const { movieList, movies, refetchMovies } = props
+    const [deleteMovie ] = useMutation(deleteMovieMutation)
 
     const handleDelete = (id) => {
         deleteMovie({
@@ -17,13 +17,13 @@ const Movie = (props) => {
                 { query: getMoviesQuery },
                 { query: getMoviesByUserIdQuery }
             ],
-        }).then(() => refetchMovies());
-    };
+        }).then(() => refetchMovies())
+    }
 
     if (movies) {
         return movies.map((movie) => {
-            const editLink = "/movies/edit/" + movie.id;
-            const showLink = "/movies/show/" + movie.id;
+            const editLink = "/movies/edit/" + movie.id
+            const showLink = "/movies/show/" + movie.id
             return (
                 <li key={movie.id} className="list-group-item d-flex justify-content-between align-items-start movie-item">
                     <div className="image-container">
@@ -44,11 +44,11 @@ const Movie = (props) => {
                         </div>
                     </div>
                 </li>
-            );
-        });
+            )
+        })
     } else {
-        return null;
+        return null
     }
-};
+}
 
-export default Movie;
+export default Movie

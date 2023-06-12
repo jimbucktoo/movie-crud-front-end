@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import Navbar from "./Navbar";
-import { useQuery, useMutation } from '@apollo/client';
-import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries";
-import "../style/style.css";
+import React, { useState } from "react"
+import { Link, Redirect } from "react-router-dom"
+import Navbar from "./Navbar"
+import { useQuery, useMutation } from '@apollo/client'
+import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries"
+import "../style/style.css"
 
 const EditMovie = (props) => {
     const goBack = () => {
-        props.history.goBack();
-    };
-    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-    const [ updateMovie ] = useMutation(updateMovieMutation);
-    const { id } = props.match.params;
+        props.history.goBack()
+    }
+    const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+    const [ updateMovie ] = useMutation(updateMovieMutation)
+    const { id } = props.match.params
     const { data: movieData } = useQuery(getMovieByIdQuery, {
         variables: {
             id: id ? id : null
         }
-    });
+    })
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-
-        const title = event.target.title.value;
-        const directors = event.target.directors.value;
-        const year = parseInt(event.target.year.value);
-        const rating = parseInt(event.target.rating.value);
-        const poster_url = event.target.posterURL.value;
+        event.preventDefault()
+        const title = event.target.title.value
+        const directors = event.target.directors.value
+        const year = parseInt(event.target.year.value)
+        const rating = parseInt(event.target.rating.value)
+        const poster_url = event.target.posterURL.value
 
         updateMovie({
             variables: {
@@ -38,16 +37,16 @@ const EditMovie = (props) => {
             },
             refetchQueries: [{ query: getMoviesQuery }]
         }).then(() => {}).catch((error) => {
-            console.error("Error Updating Movie: ", error);
-        }).then(() => setRedirectToReferrer(true));
-    };
+            console.error("Error Updating Movie: ", error)
+        }).then(() => setRedirectToReferrer(true))
+    }
 
     if (redirectToReferrer) {
-        return <Redirect to="/movies" />;
+        return <Redirect to="/movies" />
     }
 
     if(movieData != null) {
-        const movie = movieData.movieById;
+        const movie = movieData.movieById
         return (
             <div>
                 <Navbar />
@@ -117,15 +116,15 @@ const EditMovie = (props) => {
                     </form>
                 </div>
             </div>
-        );
+        )
     } else {
         return (
             <div>
                 <Navbar />
             </div>
-        );
+        )
     }
 
-};
+}
 
-export default EditMovie;
+export default EditMovie

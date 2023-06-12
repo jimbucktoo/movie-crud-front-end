@@ -1,6 +1,6 @@
-import React from "react";
-import Movie from "./Movie";
-import "../style/style.css";
+import React from "react"
+import Movie from "./Movie"
+import "../style/style.css"
 
 const MovieTable = (props) => {
     return (
@@ -9,7 +9,7 @@ const MovieTable = (props) => {
                 <Movie movieList={props.movieList} movies={props.movies} refetchMovies={props.refetchMovies}/>
             </ul>
         </div>
-    );
-};
+    )
+}
 
-export default MovieTable;
+export default MovieTable

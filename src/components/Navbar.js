@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import LogoutButton from "./LogoutButton";
-import Profile from "./Profile";
-import logo from "../assets/movieCrud.png";
-import "../style/style.css";
+import React from "react"
+import { Link } from "react-router-dom"
+import LogoutButton from "./LogoutButton"
+import Profile from "./Profile"
+import logo from "../assets/movieCrud.png"
+import "../style/style.css"
 
 const Navbar = () => {
     return (
@@ -60,7 +60,7 @@ const Navbar = () => {
             </div>
         </nav>
     </div>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar

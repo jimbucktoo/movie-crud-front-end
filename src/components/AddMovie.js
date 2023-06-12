@@ -1,32 +1,32 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import Navbar from "./Navbar";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useQuery, useMutation } from "@apollo/client";
-import { getMoviesQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries";
-import "../style/style.css";
+import React, { useState } from "react"
+import { Link, Redirect } from "react-router-dom"
+import Navbar from "./Navbar"
+import { useAuth0 } from "@auth0/auth0-react"
+import { useQuery, useMutation } from "@apollo/client"
+import { getMoviesQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries"
+import "../style/style.css"
 
 const AddMovie = (props) => {
     const goBack = () => {
-        props.history.goBack();
-    };
-    const { user, isAuthenticated } = useAuth0();
-    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-    const [ addMovie ] = useMutation(addMovieMutation);
+        props.history.goBack()
+    }
+    const { user, isAuthenticated } = useAuth0()
+    const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+    const [ addMovie ] = useMutation(addMovieMutation)
     const { data: userData } = useQuery(getUserByAuthIdQuery, {
         variables: {
             authId: isAuthenticated ? user.sub : null
         }
-    });
+    })
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const title = event.target.title.value;
-        const directors = event.target.directors.value;
-        const year = parseInt(event.target.year.value);
-        const rating = parseInt(event.target.rating.value);
-        const poster_url = event.target.posterURL.value;
-        const user_id = userData.userByAuthId.id;
+        event.preventDefault()
+        const title = event.target.title.value
+        const directors = event.target.directors.value
+        const year = parseInt(event.target.year.value)
+        const rating = parseInt(event.target.rating.value)
+        const poster_url = event.target.posterURL.value
+        const user_id = userData.userByAuthId.id
 
         addMovie({
             variables: {
@@ -39,12 +39,12 @@ const AddMovie = (props) => {
             },
             refetchQueries: [{ query: getMoviesQuery }]
         }).then(() => {}).catch((error) => {
-            console.error("Error Adding Movie: ", error);
-        }).then(() => setRedirectToReferrer(true));
-    };
+            console.error("Error Adding Movie: ", error)
+        }).then(() => setRedirectToReferrer(true))
+    }
 
     if (redirectToReferrer) {
-        return <Redirect to="/movies" />;
+        return <Redirect to="/movies" />
     }
 
     if(isAuthenticated) {
@@ -116,14 +116,14 @@ const AddMovie = (props) => {
                     </form>
                 </div>
             </div>
-        );
+        )
     } else {
         return(
             <div>
                 <Navbar />
             </div>
-        );
+        )
     }
-};
+}
 
-export default AddMovie;
+export default AddMovie
