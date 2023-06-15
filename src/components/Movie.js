@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { useMutation } from '@apollo/client'
-import { getMoviesQuery, getMoviesByUserIdQuery, deleteMovieMutation } from '../queries/queries'
+import { useMutation } from "@apollo/client"
+import { getMoviesQuery, getMoviesByUserIdQuery, deleteMovieMutation } from "../queries/queries"
 import "../style/style.css"
 
 const Movie = (props) => {
@@ -25,7 +25,7 @@ const Movie = (props) => {
             const editLink = "/movies/edit/" + movie.id
             const showLink = "/movies/show/" + movie.id
             return (
-                <li key={movie.id} className="list-group-item d-flex justify-content-between align-items-start movie-item">
+                <li key={movie.id} className="list-group-item d-flex justify-content-between align-items-start Movie">
                     <div className="image-container">
                         <img className="movie-poster" alt="poster" src={movie.poster_url} />
                     </div>

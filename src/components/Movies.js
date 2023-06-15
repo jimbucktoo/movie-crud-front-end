@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 import Navbar from "./Navbar"
 import MovieTable from "./MovieTable"
-import { useQuery } from '@apollo/client'
-import { getMoviesQuery } from '../queries/queries'
+import { useQuery } from "@apollo/client"
+import { getMoviesQuery } from "../queries/queries"
 import "../style/style.css"
 
-const Movies = (props) => {
+const Movies = () => {
     const { data: moviesData, refetch: moviesRefetch } = useQuery(getMoviesQuery)
     const [movies, setMovies] = useState(null)
 
@@ -18,7 +18,7 @@ const Movies = (props) => {
     if (moviesData != null) {
         const movieList = "/movies"
         return (
-            <div>
+            <div className="Movies">
                 <Navbar />
                 <MovieTable movieList={movieList} movies={movies} refetchMovies={moviesRefetch}/>
             </div>
@@ -26,7 +26,7 @@ const Movies = (props) => {
     }
 
     return (
-        <div>
+        <div className="Movies">
             <Navbar />
             <div className="loader">
                 <div className="spinner-grow text-primary" role="status">

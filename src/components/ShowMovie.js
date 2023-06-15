@@ -1,6 +1,6 @@
 import React from "react"
 import Navbar from "./Navbar"
-import { useQuery } from '@apollo/client'
+import { useQuery } from "@apollo/client"
 import { getMovieByIdQuery } from "../queries/queries"
 import "../style/style.css"
 

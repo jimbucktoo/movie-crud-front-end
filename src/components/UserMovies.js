@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react"
 import Navbar from "./Navbar"
 import MovieTable from "./MovieTable"
 import { useAuth0 } from "@auth0/auth0-react"
-import { useQuery } from '@apollo/client'
-import { getMoviesByUserIdQuery, getUserByAuthIdQuery } from '../queries/queries'
+import { useQuery } from "@apollo/client"
+import { getMoviesByUserIdQuery, getUserByAuthIdQuery } from "../queries/queries"
 import "../style/style.css"
 
-const UserMovies = (props) => {
+const UserMovies = () => {
     const { user, isAuthenticated } = useAuth0()
     const [userMovies, setUserMovies] = useState(null)
     const { data: userData } = useQuery(getUserByAuthIdQuery, {
@@ -31,7 +31,7 @@ const UserMovies = (props) => {
     if (userMoviesData != null) {
         const movieList = "/movies/userMovies"
         return (
-            <div>
+            <div className="UserMovies">
                 <Navbar />
                 <MovieTable movieList={movieList} movies={userMovies} refetchMovies={userMoviesRefetch}/>
             </div>
@@ -39,7 +39,7 @@ const UserMovies = (props) => {
     }
 
     return (
-        <div>
+        <div className="UserMovies">
             <Navbar />
             <div className="loader">
                 <div className="spinner-grow text-primary" role="status">

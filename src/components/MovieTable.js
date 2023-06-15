@@ -4,9 +4,9 @@ import "../style/style.css"
 
 const MovieTable = (props) => {
     return (
-        <div className="movie-table">
+        <div className="MovieTable">
             <ul className="list-group movie-list">
-                <Movie movieList={props.movieList} movies={props.movies} refetchMovies={props.refetchMovies}/>
+                <Movie className="Movie" movieList={props.movieList} movies={props.movies} refetchMovies={props.refetchMovies}/>
             </ul>
         </div>
     )

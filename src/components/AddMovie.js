@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Link, Redirect } from "react-router-dom"
+import Logo from "../assets/movieCrud.png"
 import Navbar from "./Navbar"
 import { useAuth0 } from "@auth0/auth0-react"
 import { useQuery, useMutation } from "@apollo/client"
@@ -12,12 +13,18 @@ const AddMovie = (props) => {
     }
     const { user, isAuthenticated } = useAuth0()
     const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+    const [selectedRating, setSelectedRating] = useState(5)
     const [ addMovie ] = useMutation(addMovieMutation)
     const { data: userData } = useQuery(getUserByAuthIdQuery, {
         variables: {
             authId: isAuthenticated ? user.sub : null
-        }
+        },
+        skip: !user
     })
+
+    const handleRangeChange = (event) => {
+        setSelectedRating(event.target.value)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -52,6 +59,7 @@ const AddMovie = (props) => {
             <div>
                 <Navbar />
                 <div className="AddMovie">
+                    <img className="logo" alt="MovieCrud Logo" src={Logo} />
                     <h3 className="heading">Add Movie:</h3>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
@@ -59,6 +67,8 @@ const AddMovie = (props) => {
                             required
                             name="title"
                             type="text"
+                            pattern=".*"
+                            title="Please enter a valid movie title."
                             className="form-control"
                             id="inputTitle"
                             placeholder="Title"/>
@@ -68,6 +78,8 @@ const AddMovie = (props) => {
                             required
                             name="directors"
                             type="text"
+                            pattern="[A-Za-z,\s]+"
+                            title="Please enter a valid name for the movie director."
                             className="form-control"
                             id="inputDirectors"
                             placeholder="Directors"/>
@@ -77,8 +89,8 @@ const AddMovie = (props) => {
                             required
                             name="year"
                             type="text"
-                            pattern="[0-9]*"
-                            title="A number value is required."
+                            pattern="^(19|20)\d{2}$"
+                            title="Please enter a valid year (1900-2099)."
                             className="form-control"
                             id="inputYear"
                             placeholder="Year"/>
@@ -86,24 +98,17 @@ const AddMovie = (props) => {
                         <div className="form-group">
                             <input
                             required
-                            name="rating"
-                            type="text"
-                            pattern="[0-9]*"
-                            title="A number value is required."
-                            className="form-control"
-                            id="inputRating"
-                            placeholder="Rating"/>
-                        </div>
-                        <div className="form-group">
-                            <input
-                            required
                             name="posterURL"
                             type="text"
                             pattern="https?://.+"
-                            title="A valid URL value is required."
+                            title="Please enter a valid URL starting with http:// or https://"
                             className="form-control"
                             id="inputPosterURL"
                             placeholder="Poster URL"/>
+                        </div>
+                        <div className="form-group">
+                            <label>Rating: {selectedRating}</label>
+                            <input required name="rating" type="range" className="custom-range" min="0" max="5" onChange={handleRangeChange} />
                         </div>
                         <div className="movie-buttons">
                             <button className="btn btn-primary movie-button" type="submit">

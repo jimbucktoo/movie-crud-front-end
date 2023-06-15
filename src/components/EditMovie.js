@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link, Redirect } from "react-router-dom"
 import Navbar from "./Navbar"
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation } from "@apollo/client"
 import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries"
 import "../style/style.css"
 
@@ -10,13 +10,26 @@ const EditMovie = (props) => {
         props.history.goBack()
     }
     const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+    const [selectedRating, setSelectedRating] = useState(5)
     const [ updateMovie ] = useMutation(updateMovieMutation)
     const { id } = props.match.params
     const { data: movieData } = useQuery(getMovieByIdQuery, {
         variables: {
             id: id ? id : null
-        }
+        },
+        skip: !id
     })
+
+    useEffect(() => {
+        if (movieData && movieData.movieById && movieData.movieById.rating) {
+            setSelectedRating(movieData.movieById.rating)
+        }
+    }, [movieData])
+
+    const handleRangeChange = (event) => {
+        setSelectedRating(event.target.value)
+        console.log(event.target.value)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -45,7 +58,7 @@ const EditMovie = (props) => {
         return <Redirect to="/movies" />
     }
 
-    if(movieData != null) {
+    if(movieData) {
         const movie = movieData.movieById
         return (
             <div>
@@ -59,55 +72,60 @@ const EditMovie = (props) => {
                             required
                             name="title"
                             type="text"
+                            pattern=".*"
+                            title="Please enter a valid movie title."
                             className="form-control"
                             id="inputTitle"
-                            placeholder={"Title: " + movie.title}/>
+                            defaultValue={movie.title} />
                         </div>
                         <div className="form-group">
                             <input
                             required
                             name="directors"
                             type="text"
+                            pattern="[A-Za-z,\s]+"
+                            title="Please enter a valid name for the movie director."
                             className="form-control"
                             id="inputDirectors"
-                            placeholder={"Director(s): " + movie.directors}/>
+                            defaultValue={movie.directors} />
                         </div>
                         <div className="form-group">
                             <input
                             required
                             name="year"
                             type="text"
-                            pattern="[0-9]*"
-                            title="A number value is required."
+                            pattern="^(19|20)\d{2}$"
+                            title="Please enter a valid year (1900-2099)."
                             className="form-control"
                             id="inputYear"
-                            placeholder={"Year: " + movie.year}/>
-                        </div>
-                        <div className="form-group">
-                            <input
-                            required
-                            name="rating"
-                            type="text"
-                            pattern="[0-9]*"
-                            title="A number value is required."
-                            className="form-control"
-                            id="inputRating"
-                            placeholder={"Rating: " + movie.rating}/>
+                            defaultValue={movie.year} />
                         </div>
                         <div className="form-group">
                             <input
                             required
                             name="posterURL"
                             type="text"
-                            pattern="https://.+"
-                            title="A valid URL value is required."
+                            pattern="https?://.+"
+                            title="Please enter a valid URL starting with http:// or https://"
                             className="form-control"
                             id="inputPosterURL"
-                            placeholder={"Poster URL: " + movie.poster_url}/>
+                            defaultValue={movie.poster_url} />
+                        </div>
+                        <div className="form-group">
+                            <label>Rating: {selectedRating}</label>
+                            <input
+                            required
+                            name="rating"
+                            type="range"
+                            className="custom-range"
+                            min="0"
+                            max="5"
+                            value={selectedRating}
+                            onChange={handleRangeChange} />
                         </div>
                         <div className="movie-buttons">
                             <button className="btn btn-primary movie-button" type="submit">
-                                Edit
+                                Submit
                             </button>
                             <Link to="#" className="btn btn-danger movie-button" onClick={goBack}>
                                 Cancel

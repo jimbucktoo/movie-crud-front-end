@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import LogoutButton from "./LogoutButton"
+import Logout from "./Logout"
 import Profile from "./Profile"
 import logo from "../assets/movieCrud.png"
 import "../style/style.css"
@@ -41,17 +41,17 @@ const Navbar = () => {
                             <Profile />
                             <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <Link className="dropdown-item" to="/movies/userMovies">
+                                    <Link className="dropdown-item profile-links" to="/movies/userMovies">
                                         My Movies
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="dropdown-item" to="/settings">
+                                    <Link className="dropdown-item profile-links" to="/settings">
                                         Settings
                                     </Link>
                                 </li>
                                 <li>
-                                    <LogoutButton />
+                                    <Logout className="profile-links" />
                                 </li>
                             </ul>
                         </li>

@@ -1,61 +1,8 @@
-import React, { useEffect, useContext } from "react"
+import React from "react"
 import { useAuth0 } from "@auth0/auth0-react"
-import { useQuery, useMutation } from '@apollo/client'
-import { getUsersQuery, authenticateUserMutation, addUserMutation } from '../queries/queries'
-import AuthContext from '../AuthContext'
 
-const Profile = (props) => {
+const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0()
-    const { data: usersData } = useQuery(getUsersQuery)
-    const [ authenticateUser ] = useMutation(authenticateUserMutation)
-    const [ addUser ] = useMutation(addUserMutation)
-    const { setToken } = useContext(AuthContext)
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            handleCreateUser(user)
-        }
-    }, [isAuthenticated, user])
-
-    const handleCreateUser = (user) => {
-        if (usersData) {
-            const existingUser = usersData.users.find(
-                (existingUser) => existingUser.email === user.email
-            )
-
-            if (existingUser) {
-                authenticateUser({
-                    variables: {
-                        authId: user.sub,
-                        username: user.nickname,
-                        email: user.email,
-                        picture: user.picture
-                    },
-                    refetchQueries: [{ query: getUsersQuery }]
-                }).then(response => {
-                    const token = response.data.authenticateUser.token
-                    setToken(token)
-                }).catch((error) => {
-                    console.error("Error Authenticating User: ", error)
-                })
-            } else {
-                addUser({
-                    variables: {
-                        authId: user.sub,
-                        username: user.nickname,
-                        email: user.email,
-                        picture: user.picture
-                    },
-                    refetchQueries: [{ query: getUsersQuery }]
-                }).then(response => {
-                    const token = response.data.addUser.token
-                    setToken(token)
-                }).catch((error) => {
-                    console.error("Error Adding User: ", error)
-                })
-            }
-        }
-    }
 
     if (isLoading) {
         return (
