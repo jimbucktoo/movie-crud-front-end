@@ -112,7 +112,7 @@ const AddMovie = (props) => {
                         </div>
                         <div className="form-group">
                             <label>Rating: {selectedRating}</label>
-                            <input required name="rating" type="range" className="custom-range" min="0" max="5" onChange={handleRangeChange} />
+                            <input required name="rating" type="range" className="custom-range" min="1" max="5" onChange={handleRangeChange} />
                         </div>
                         <div className="movie-buttons">
                             <button className="btn btn-primary movie-button" type="submit">

@@ -113,7 +113,7 @@ const EditMovie = (props) => {
                             name="rating"
                             type="range"
                             className="custom-range"
-                            min="0"
+                            min="1"
                             max="5"
                             value={selectedRating}
                             onChange={handleRangeChange} />
