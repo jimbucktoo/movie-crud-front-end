@@ -48,7 +48,7 @@ const App = () => {
                             <Route exact path="/" component={Home} />
                         </Switch>
                     </BrowserRouter>
-                    <Auth updateToken={updateToken} />
+                    <Auth updateToken={updateToken}/>
                 </div>
             </ApolloProvider>
         </Auth0Provider>

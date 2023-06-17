@@ -4,15 +4,12 @@ import Logo from "../assets/movieCrud.png"
 import Navbar from "./Navbar"
 import { useAuth0 } from "@auth0/auth0-react"
 import { useQuery, useMutation } from "@apollo/client"
-import { getMoviesQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries"
+import { getMoviesQuery, getMoviesByUserIdQuery, getUserByAuthIdQuery, addMovieMutation } from "../queries/queries"
 import "../style/style.css"
 
 const AddMovie = (props) => {
-    const goBack = () => {
-        props.history.goBack()
-    }
     const { user, isAuthenticated } = useAuth0()
-    const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+    const [redirectToMovies, setRedirectToMovies] = useState(false)
     const [selectedRating, setSelectedRating] = useState(5)
     const [ addMovie ] = useMutation(addMovieMutation)
     const { data: userData } = useQuery(getUserByAuthIdQuery, {
@@ -21,6 +18,10 @@ const AddMovie = (props) => {
         },
         skip: !user
     })
+
+    const goBack = () => {
+        props.history.goBack()
+    }
 
     const handleRangeChange = (event) => {
         setSelectedRating(event.target.value)
@@ -44,13 +45,16 @@ const AddMovie = (props) => {
                 poster_url: poster_url,
                 user_id: user_id
             },
-            refetchQueries: [{ query: getMoviesQuery }]
+            refetchQueries: [
+                { query: getMoviesQuery },
+                { query: getMoviesByUserIdQuery, variables: { id: user_id } }
+            ]
         }).then(() => {}).catch((error) => {
             console.error("Error Adding Movie: ", error)
-        }).then(() => setRedirectToReferrer(true))
+        }).then(() => setRedirectToMovies(true))
     }
 
-    if (redirectToReferrer) {
+    if (redirectToMovies) {
         return <Redirect to="/movies" />
     }
 

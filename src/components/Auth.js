@@ -2,18 +2,13 @@ import { useEffect } from "react"
 import { useAuth0 } from "@auth0/auth0-react"
 import { useQuery, useMutation } from "@apollo/client"
 import { getUsersQuery, authenticateUserMutation, addUserMutation } from "../queries/queries"
+import jwt_decode from "jwt-decode"
 
 const Auth = ({ updateToken }) => {
     const { user, isAuthenticated } = useAuth0()
     const { data: usersData } = useQuery(getUsersQuery)
-    const [ authenticateUser ] = useMutation(authenticateUserMutation)
-    const [ addUser ] = useMutation(addUserMutation)
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            handleUserAuth(user)
-        }
-    }, [isAuthenticated, user])
+    const [authenticateUser] = useMutation(authenticateUserMutation)
+    const [addUser] = useMutation(addUserMutation)
 
     const handleUserAuth = (user) => {
         if (usersData) {
@@ -30,10 +25,15 @@ const Auth = ({ updateToken }) => {
                         picture: user.picture
                     },
                     refetchQueries: [{ query: getUsersQuery }]
-                }).then(response => {
+                }).then((response) => {
                     const token = response.data.authenticateUser.token
-                    localStorage.setItem("jwtToken", token)
-                    if(updateToken){
+                    const jwt = localStorage.getItem("jwtToken")
+
+                    if (!jwt) {
+                        localStorage.setItem("jwtToken", token)
+                    }
+
+                    if (updateToken) {
                         updateToken()
                     }
                 }).catch((error) => {
@@ -48,10 +48,10 @@ const Auth = ({ updateToken }) => {
                         picture: user.picture
                     },
                     refetchQueries: [{ query: getUsersQuery }]
-                }).then(response => {
-                    const token = response.data.addUser.token
-                    localStorage.setItem("jwtToken", token)
-                    if(updateToken){
+                }).then((response) => {
+                    const jwtToken = response.data.addUser.token
+                    localStorage.setItem("jwtToken", jwtToken)
+                    if (updateToken) {
                         updateToken()
                     }
                 }).catch((error) => {
@@ -59,7 +59,42 @@ const Auth = ({ updateToken }) => {
                 })
             }
         }
+
+        const checkTimeLeft = () => {
+            const jwtToken = localStorage.getItem("jwtToken")
+            const decodedToken = jwt_decode(jwtToken)
+            const currentTime = Date.now() / 1000
+            const timeLeft = decodedToken.exp - currentTime
+
+            if (timeLeft < 60) {
+                authenticateUser({
+                    variables: {
+                        authId: user.sub,
+                        username: user.nickname,
+                        email: user.email,
+                        picture: user.picture
+                    },
+                    refetchQueries: [{ query: getUsersQuery }]
+                }).then((response) => {
+                    const token = response.data.authenticateUser.token
+                    localStorage.setItem("jwtToken", token)
+                    if (updateToken) {
+                        updateToken()
+                    }
+                }).catch((error) => {
+                    console.error("Error Renewing Token: ", error)
+                })
+            }
+        }
+
+        setInterval(checkTimeLeft, 1000)
     }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            handleUserAuth(user)
+        }
+    }, [isAuthenticated, user])
 
     return null
 }

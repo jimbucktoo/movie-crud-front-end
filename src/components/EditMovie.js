@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Navbar from "./Navbar"
 import { useQuery, useMutation } from "@apollo/client"
 import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries"
 import "../style/style.css"
 
 const EditMovie = (props) => {
-    const goBack = () => {
-        props.history.goBack()
-    }
-    const [redirectToReferrer, setRedirectToReferrer] = useState(false)
     const [selectedRating, setSelectedRating] = useState(5)
     const [ updateMovie ] = useMutation(updateMovieMutation)
     const { id } = props.match.params
@@ -20,15 +16,12 @@ const EditMovie = (props) => {
         skip: !id
     })
 
-    useEffect(() => {
-        if (movieData && movieData.movieById && movieData.movieById.rating) {
-            setSelectedRating(movieData.movieById.rating)
-        }
-    }, [movieData])
+    const goBack = () => {
+        props.history.goBack()
+    }
 
     const handleRangeChange = (event) => {
         setSelectedRating(event.target.value)
-        console.log(event.target.value)
     }
 
     const handleSubmit = (event) => {
@@ -51,12 +44,14 @@ const EditMovie = (props) => {
             refetchQueries: [{ query: getMoviesQuery }]
         }).then(() => {}).catch((error) => {
             console.error("Error Updating Movie: ", error)
-        }).then(() => setRedirectToReferrer(true))
+        }).then(() => goBack())
     }
 
-    if (redirectToReferrer) {
-        return <Redirect to="/movies" />
-    }
+    useEffect(() => {
+        if (movieData && movieData.movieById && movieData.movieById.rating) {
+            setSelectedRating(movieData.movieById.rating)
+        }
+    }, [movieData])
 
     if(movieData) {
         const movie = movieData.movieById
