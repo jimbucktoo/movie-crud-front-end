@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import Navbar from "./Navbar"
 import { useQuery, useMutation } from "@apollo/client"
 import { getMoviesQuery, getMovieByIdQuery, updateMovieMutation } from "../queries/queries"
@@ -26,23 +25,19 @@ const EditMovie = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const title = event.target.title.value
-        const directors = event.target.directors.value
-        const year = parseInt(event.target.year.value)
-        const rating = parseInt(event.target.rating.value)
-        const poster_url = event.target.posterURL.value
+        const { title, directors, year, rating, posterURL } = event.target
 
         updateMovie({
             variables: {
                 id: id,
-                title: title,
-                directors: directors,
-                year: year,
-                rating: rating,
-                poster_url: poster_url
+                title: title.value,
+                directors: directors.value,
+                year: parseInt(year.value),
+                rating: parseInt(rating.value),
+                poster_url: posterURL.value
             },
             refetchQueries: [{ query: getMoviesQuery }]
-        }).then(() => {}).catch((error) => {
+        }).catch((error) => {
             console.error("Error Updating Movie: ", error)
         }).then(() => goBack())
     }
@@ -122,9 +117,9 @@ const EditMovie = (props) => {
                             <button className="btn btn-primary movie-button" type="submit">
                                 Submit
                             </button>
-                            <Link to="#" className="btn btn-danger movie-button" onClick={goBack}>
+                            <button className="btn btn-danger movie-button" type="button" onClick={goBack}>
                                 Cancel
-                            </Link>
+                            </button>
                         </div>
                     </form>
                 </div>

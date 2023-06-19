@@ -46,11 +46,6 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="dropdown-item profile-links" to="/settings">
-                                        Settings
-                                    </Link>
-                                </li>
-                                <li>
                                     <Logout className="profile-links" />
                                 </li>
                             </ul>

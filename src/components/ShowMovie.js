@@ -6,11 +6,36 @@ import "../style/style.css"
 
 const ShowMovie = (props) => {
     const { id } = props.match.params
-    const { data: movieData } = useQuery(getMovieByIdQuery, {
+    const { data: movieData, loading } = useQuery(getMovieByIdQuery, {
         variables: {
             id: id ? id : null
         }
     })
+
+    if (loading) {
+        return (
+            <div>
+                <Navbar />
+                <div className="loader">
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="spinner-grow text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     if (movieData != null) {
         const movie = movieData.movieById

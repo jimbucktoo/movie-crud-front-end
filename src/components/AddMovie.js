@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import Logo from "../assets/movieCrud.png"
 import Navbar from "./Navbar"
 import { useAuth0 } from "@auth0/auth0-react"
@@ -11,12 +11,12 @@ const AddMovie = (props) => {
     const { user, isAuthenticated } = useAuth0()
     const [redirectToMovies, setRedirectToMovies] = useState(false)
     const [selectedRating, setSelectedRating] = useState(5)
-    const [ addMovie ] = useMutation(addMovieMutation)
+    const [addMovie] = useMutation(addMovieMutation)
     const { data: userData } = useQuery(getUserByAuthIdQuery, {
         variables: {
-            authId: isAuthenticated ? user.sub : null
+            authId: isAuthenticated ? user.sub : null,
         },
-        skip: !user
+        skip: !user,
     })
 
     const goBack = () => {
@@ -24,32 +24,28 @@ const AddMovie = (props) => {
     }
 
     const handleRangeChange = (event) => {
-        setSelectedRating(event.target.value)
+        setSelectedRating(parseInt(event.target.value, 10))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const title = event.target.title.value
-        const directors = event.target.directors.value
-        const year = parseInt(event.target.year.value)
-        const rating = parseInt(event.target.rating.value)
-        const poster_url = event.target.posterURL.value
+        const { title, directors, year, rating, posterURL } = event.target
         const user_id = userData.userByAuthId.id
 
         addMovie({
             variables: {
-                title: title,
-                directors: directors,
-                year: year,
-                rating: rating,
-                poster_url: poster_url,
-                user_id: user_id
+                title: title.value,
+                directors: directors.value,
+                year: parseInt(year.value, 10),
+                rating: parseInt(rating.value, 10),
+                poster_url: posterURL.value,
+                user_id: user_id,
             },
             refetchQueries: [
                 { query: getMoviesQuery },
-                { query: getMoviesByUserIdQuery, variables: { id: user_id } }
-            ]
-        }).then(() => {}).catch((error) => {
+                { query: getMoviesByUserIdQuery, variables: { id: user_id } },
+            ],
+        }).catch((error) => {
             console.error("Error Adding Movie: ", error)
         }).then(() => setRedirectToMovies(true))
     }
@@ -58,7 +54,7 @@ const AddMovie = (props) => {
         return <Redirect to="/movies" />
     }
 
-    if(isAuthenticated) {
+    if (isAuthenticated) {
         return (
             <div>
                 <Navbar />
@@ -112,22 +108,29 @@ const AddMovie = (props) => {
                         </div>
                         <div className="form-group">
                             <label>Rating: {selectedRating}</label>
-                            <input required name="rating" type="range" className="custom-range" min="1" max="5" onChange={handleRangeChange} />
+                            <input
+                            required
+                            name="rating"
+                            type="range"
+                            className="custom-range"
+                            min="1"
+                            max="5"
+                            onChange={handleRangeChange}/>
                         </div>
                         <div className="movie-buttons">
                             <button className="btn btn-primary movie-button" type="submit">
                                 Submit
                             </button>
-                            <Link to="#" className="btn btn-danger movie-button" onClick={goBack}>
+                            <button className="btn btn-danger movie-button" onClick={goBack}>
                                 Cancel
-                            </Link>
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         )
     } else {
-        return(
+        return (
             <div>
                 <Navbar />
             </div>

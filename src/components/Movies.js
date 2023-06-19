@@ -8,6 +8,7 @@ import "../style/style.css"
 const Movies = () => {
     const { data: moviesData, refetch: moviesRefetch } = useQuery(getMoviesQuery)
     const [movies, setMovies] = useState(null)
+    const movieList = "/movies"
 
     useEffect(() => {
         if (moviesData) {
@@ -15,8 +16,7 @@ const Movies = () => {
         }
     }, [moviesData])
 
-    if (moviesData != null) {
-        const movieList = "/movies"
+    if (moviesData) {
         return (
             <div className="Movies">
                 <Navbar />

@@ -11,7 +11,6 @@ import UserMovies from "./components/UserMovies"
 import AddMovie from "./components/AddMovie"
 import EditMovie from "./components/EditMovie"
 import ShowMovie from "./components/ShowMovie"
-import Settings from "./components/Settings"
 import Auth from "./components/Auth"
 
 const App = () => {
@@ -23,7 +22,7 @@ const App = () => {
     }
 
     const client = new ApolloClient({
-        uri: "http://localhost:3001/graphql",
+        uri: "https://moviecrud.onrender.com/graphql",
         cache: new InMemoryCache(),
         headers: {
             Authorization: token ? `${token}` : "",
@@ -39,7 +38,6 @@ const App = () => {
                 <div>
                     <BrowserRouter>
                         <Switch>
-                            <Route path="/settings" component={Settings} />
                             <Route path="/movies/show/:id" component={ShowMovie} />
                             <Route path="/movies/edit/:id" component={EditMovie} />
                             <Route path="/movies/add" component={AddMovie} />

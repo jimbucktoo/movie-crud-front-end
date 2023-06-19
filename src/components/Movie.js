@@ -27,7 +27,9 @@ const Movie = (props) => {
                 { query: getMoviesQuery },
                 { query: getMoviesByUserIdQuery, variables: { id: user_id } }
             ],
-        }).then(() => refetchMovies())
+        }).then(() => refetchMovies()).catch((error) => {
+            console.error("Error deleting movie: ", error)
+        })
     }
 
     if (movies) {

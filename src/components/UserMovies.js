@@ -28,7 +28,7 @@ const UserMovies = () => {
         }
     }, [userMoviesData])
 
-    if (userMoviesData != null) {
+    if (userMoviesData) {
         const movieList = "/movies/userMovies"
         return (
             <div className="UserMovies">

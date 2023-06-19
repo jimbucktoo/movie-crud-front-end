@@ -10,53 +10,57 @@ const Auth = ({ updateToken }) => {
     const [authenticateUser] = useMutation(authenticateUserMutation)
     const [addUser] = useMutation(addUserMutation)
 
-    const handleUserAuth = (user) => {
-        if (usersData) {
-            const existingUser = usersData.users.find(
-                (existingUser) => existingUser.email === user.email
-            )
+    useEffect(() => {
+        let interval = null
 
-            if (existingUser) {
-                authenticateUser({
-                    variables: {
-                        authId: user.sub,
-                        username: user.nickname,
-                        email: user.email,
-                        picture: user.picture
-                    },
-                    refetchQueries: [{ query: getUsersQuery }]
-                }).then((response) => {
-                    const token = response.data.authenticateUser.token
-                    const jwt = localStorage.getItem("jwtToken")
+        const handleUserAuth = (user) => {
+            if (usersData) {
+                const existingUser = usersData.users.find(
+                    (existingUser) => existingUser.email === user.email
+                )
 
-                    if (!jwt) {
-                        localStorage.setItem("jwtToken", token)
-                    }
+                if (existingUser) {
+                    authenticateUser({
+                        variables: {
+                            authId: user.sub,
+                            username: user.nickname,
+                            email: user.email,
+                            picture: user.picture
+                        },
+                        refetchQueries: [{ query: getUsersQuery }]
+                    }).then((response) => {
+                        const token = response.data.authenticateUser.token
+                        const jwt = localStorage.getItem("jwtToken")
 
-                    if (updateToken) {
-                        updateToken()
-                    }
-                }).catch((error) => {
-                    console.error("Error Authenticating User: ", error)
-                })
-            } else {
-                addUser({
-                    variables: {
-                        authId: user.sub,
-                        username: user.nickname,
-                        email: user.email,
-                        picture: user.picture
-                    },
-                    refetchQueries: [{ query: getUsersQuery }]
-                }).then((response) => {
-                    const jwtToken = response.data.addUser.token
-                    localStorage.setItem("jwtToken", jwtToken)
-                    if (updateToken) {
-                        updateToken()
-                    }
-                }).catch((error) => {
-                    console.error("Error Adding User: ", error)
-                })
+                        if (!jwt) {
+                            localStorage.setItem("jwtToken", token)
+                        }
+
+                        if (updateToken) {
+                            updateToken()
+                        }
+                    }).catch((error) => {
+                        console.error("Error Authenticating User: ", error)
+                    })
+                } else {
+                    addUser({
+                        variables: {
+                            authId: user.sub,
+                            username: user.nickname,
+                            email: user.email,
+                            picture: user.picture
+                        },
+                        refetchQueries: [{ query: getUsersQuery }]
+                    }).then((response) => {
+                        const jwtToken = response.data.addUser.token
+                        localStorage.setItem("jwtToken", jwtToken)
+                        if (updateToken) {
+                            updateToken()
+                        }
+                    }).catch((error) => {
+                        console.error("Error Adding User: ", error)
+                    })
+                }
             }
         }
 
@@ -87,14 +91,15 @@ const Auth = ({ updateToken }) => {
             }
         }
 
-        setInterval(checkTimeLeft, 1000)
-    }
-
-    useEffect(() => {
         if (isAuthenticated) {
             handleUserAuth(user)
+            interval = setInterval(checkTimeLeft, 1000)
         }
-    }, [isAuthenticated, user])
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [user, usersData, isAuthenticated, authenticateUser, addUser, updateToken])
 
     return null
 }
