@@ -1,6 +1,6 @@
 # movie-crud-front-end
 
-MovieCrud is a full stack application created that allows users to create and share detailed movie reviews utilizing standardized crud routing schema.
+MovieCrud is a full stack application that allows users to create, share and discuss movie reviews.
 
 ## Links
 
@@ -17,8 +17,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-* [NPM](https://www.npmjs.com/) - npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js.
 * [Node.js](https://www.nodejs.org/) - Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
+* [NPM](https://www.npmjs.com/) - npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js.
 
 ### Installing
 
@@ -50,9 +50,9 @@ http://localhost:3000/
 ## Technologies
 
 * [Bootstrap](https://www.getbootstrap.com/) - Bootstrap is a free and open-source front-end framework for developing websites and web applications.
+* [GraphQL](https://graphql.org/) - GraphQL is an open-source data query and manipulation language for APIs and a query runtime engine. 
 * [Materialize](https://materializecss.com/) - Materialize is a modern responsive CSS framework based on Material Design by Google.
 * [React](https://reactjs.org/) - React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.
-* [GraphQL](https://graphql.org/) - GraphQL is an open-source data query and manipulation language for APIs and a query runtime engine. 
 
 ## Authors
 
