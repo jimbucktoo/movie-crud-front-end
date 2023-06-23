@@ -7,20 +7,8 @@ const Profile = () => {
     if (isLoading) {
         return (
             <div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
+                <div className="spinner-border text-primary" role="status">
+                    <span className="sr-only">Loading...</span>
                 </div>
             </div>
         )

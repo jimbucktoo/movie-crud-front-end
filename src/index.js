@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
-import { Auth0Provider } from "@auth0/auth0-react"
+import { Auth0Provider, withAuthenticationRequired } from "@auth0/auth0-react"
 import "./style/style.css"
 
 import Home from "./components/Home"
@@ -37,11 +37,11 @@ const App = () => {
                 <div>
                     <BrowserRouter>
                         <Switch>
-                            <Route path="/movies/show/:id" component={ShowMovie} />
-                            <Route path="/movies/edit/:id" component={EditMovie} />
-                            <Route path="/movies/add" component={AddMovie} />
-                            <Route path="/movies/userMovies" component={UserMovies} />
-                            <Route path="/movies" component={Movies} />
+                            <Route path="/movies/show/:id" component={withAuthenticationRequired(ShowMovie)} />
+                            <Route path="/movies/edit/:id" component={withAuthenticationRequired(EditMovie)} />
+                            <Route path="/movies/add" component={withAuthenticationRequired(AddMovie)} />
+                            <Route path="/movies/userMovies" component={withAuthenticationRequired(UserMovies)} />
+                            <Route path="/movies" component={withAuthenticationRequired(Movies)} />
                             <Route exact path="/" component={Home} />
                         </Switch>
                     </BrowserRouter>

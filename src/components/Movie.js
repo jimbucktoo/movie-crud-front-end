@@ -38,9 +38,9 @@ const Movie = (props) => {
             const showLink = "/movies/show/" + movie.id
             return (
                 <li key={movie.id} className="list-group-item Movie">
-                    <div className="image-container">
+                    <Link className="image-container" to={showLink}>
                         <img className="movie-poster" alt="poster" src={movie.poster_url} />
-                    </div>
+                    </Link>
                     <div className="me-auto movie-details">
                         <div className="movie-info">
                             <div className="fw-bold">

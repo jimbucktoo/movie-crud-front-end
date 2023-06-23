@@ -42,20 +42,8 @@ const UserMovies = () => {
         <div className="UserMovies">
             <Navbar />
             <div className="loader">
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="spinner-grow text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
+                <div className="spinner-border text-primary loader-spinner" role="status">
+                    <span className="sr-only">Loading...</span>
                 </div>
             </div>
         </div>

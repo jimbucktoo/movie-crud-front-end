@@ -100,10 +100,15 @@ label {
 
 .loader {
     background-color: #000000;
-    height: 100vh;
+    height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.loader-spinner {
+    width: 5rem;
+    height: 5rem;
 }
 
 .logo {
@@ -229,6 +234,14 @@ label {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .loader {
+        background-color: #000000;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .movie-buttons {
