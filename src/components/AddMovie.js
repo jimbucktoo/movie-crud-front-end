@@ -24,7 +24,7 @@ const AddMovie = (props) => {
     }
 
     const handleRangeChange = (event) => {
-        setSelectedRating(parseInt(event.target.value, 10))
+        setSelectedRating(parseInt(event.target.value))
     }
 
     const handleSubmit = (event) => {
@@ -36,8 +36,8 @@ const AddMovie = (props) => {
             variables: {
                 title: title.value,
                 directors: directors.value,
-                year: parseInt(year.value, 10),
-                rating: parseInt(rating.value, 10),
+                year: parseInt(year.value),
+                rating: parseInt(rating.value),
                 poster_url: posterURL.value,
                 user_id: user_id,
             },
@@ -113,6 +113,7 @@ const AddMovie = (props) => {
                             name="rating"
                             type="range"
                             className="custom-range"
+                            defaultValue={selectedRating}
                             min="1"
                             max="5"
                             onChange={handleRangeChange}/>
