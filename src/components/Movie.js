@@ -37,11 +37,11 @@ const Movie = (props) => {
             const editLink = "/movies/edit/" + movie.id
             const showLink = "/movies/show/" + movie.id
             return (
-                <li key={movie.id} className="list-group-item d-flex justify-content-between align-items-start Movie">
+                <li key={movie.id} className="list-group-item Movie">
                     <div className="image-container">
                         <img className="movie-poster" alt="poster" src={movie.poster_url} />
                     </div>
-                    <div className="ms-2 me-auto">
+                    <div className="me-auto movie-details">
                         <div className="movie-info">
                             <div className="fw-bold">
                                 <Link className="movie-title" to={showLink}>{movie.title}</Link>

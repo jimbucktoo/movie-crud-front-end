@@ -15,6 +15,8 @@ import Auth from "./components/Auth"
 
 const App = () => {
     const [token, setToken] = useState(localStorage.getItem("jwtToken"))
+    const domain = process.env.REACT_APP_AUTH0_DOMAIN
+    const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
 
     const updateToken = () => {
         const localToken = localStorage.getItem("jwtToken")
@@ -28,9 +30,6 @@ const App = () => {
             Authorization: token ? `${token}` : "",
         }
     })
-
-    const domain = process.env.REACT_APP_AUTH0_DOMAIN
-    const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
 
     return (
         <Auth0Provider domain={domain} clientId={clientId} authorizationParams={{ redirect_uri: window.location.origin + "/movies" }}>
