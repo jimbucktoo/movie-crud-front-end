@@ -49,6 +49,7 @@ http://localhost:3000/
 
 ## Technologies
 
+* [Auth0](https://auth0.com/) - Auth0 is an identity management platform that provides authentication and authorization services for web, mobile, and other applications.
 * [Bootstrap](https://www.getbootstrap.com/) - Bootstrap is a free and open-source front-end framework for developing websites and web applications.
 * [GraphQL](https://graphql.org/) - GraphQL is an open-source data query and manipulation language for APIs and a query runtime engine. 
 * [Materialize](https://materializecss.com/) - Materialize is a modern responsive CSS framework based on Material Design by Google.
