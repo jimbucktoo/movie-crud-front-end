@@ -78,7 +78,7 @@ const AddMovie = (props) => {
                             required
                             name="directors"
                             type="text"
-                            pattern="[A-Za-z,\s]+"
+                            pattern=".*"
                             title="Please enter a valid name for the movie director."
                             className="form-control"
                             id="inputDirectors"

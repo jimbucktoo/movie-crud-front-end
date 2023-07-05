@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "28c93a099efcead6bff4",
+    "revision": "b53e6fb96e3de8189988",
     "url": "/static/css/main.9ab2c426.chunk.css"
   },
   {
-    "revision": "28c93a099efcead6bff4",
-    "url": "/static/js/main.add0b8c3.chunk.js"
+    "revision": "b53e6fb96e3de8189988",
+    "url": "/static/js/main.f9dcee6d.chunk.js"
   },
   {
     "revision": "42ac5946195a7306e2a5",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/static/media/movieCrud.a3a7187a.png"
   },
   {
-    "revision": "edeaf69ec144d354714005227d82537e",
+    "revision": "63f0df1be52ce4b4f2a676835bbe48ad",
     "url": "/index.html"
   }
 ];
