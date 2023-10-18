@@ -1,6 +1,6 @@
 # movie-crud-front-end
 
-MovieCrud is a full stack application that allows users to create, share and discuss in-depth movie reviews.
+MovieCrud is a full-stack web application that enables users to create, edit, share and discuss in-depth movie reviews.
 
 ## Links
 
