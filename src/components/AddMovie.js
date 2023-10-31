@@ -122,7 +122,7 @@ const AddMovie = (props) => {
                             <button className="btn btn-primary movie-button" type="submit">
                                 Submit
                             </button>
-                            <button className="btn btn-danger movie-button" onClick={goBack}>
+                            <button className="btn btn-danger movie-button" type="button" onClick={goBack}>
                                 Cancel
                             </button>
                         </div>
