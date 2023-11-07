@@ -23,7 +23,8 @@ label {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 100px 0px;
+    margin: 100px auto 40px auto;
+    position: relative;
 }
 
 .EditMovie {
@@ -31,11 +32,12 @@ label {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 100px 0px;
+    margin: 100px auto 40px auto;
+    position: relative;
 }
 
 .Home {
-    margin: 100px 0px;
+    margin: 100px auto;
     text-align: center;
 }
 
@@ -43,7 +45,7 @@ label {
     background-color: #212529 !important;
     color: #FFFFFF;
     text-decoration: none !important;
-    margin: 10px 0px;
+    margin: 30px auto;
     padding: 20px 20px;
     border-radius: 20px !important;
     display: flex;
@@ -52,16 +54,17 @@ label {
 }
 
 .Movies {
-    margin: 100px 0px;
+    margin: 80px auto;
+    position: relative;
 }
 
 .MovieTable {
-    margin: 0 auto;
-    width: 80%;
+    margin: 80px auto;
+    position: relative;
 }
 
 .Profile {
-    margin: 0 auto;
+    margin: 0px auto;
     text-align: center;
 }
 
@@ -70,18 +73,15 @@ label {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 20px 0px;
+    margin: 100px auto 40px auto;
+    position: relative;
     color: #FFFFFF;
-}
-
-.UserMovies {
-    margin: 100px 0px;
 }
 
 .app-title {
     font-weight: bold;
     color: #FFFFFF !important;
-    margin: 30px 0px;
+    margin: 30px auto;
 }
 
 .app-title:hover {
@@ -95,7 +95,7 @@ label {
 
 .image-container {
     width: 200px;
-    height: 100%;
+    height: 300px;
 }
 
 .loader {
@@ -129,6 +129,12 @@ label {
     margin-left: 10px;
 }
 
+.movie-directors {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .movie-image {
     height: 200px;
     width: 200px;
@@ -137,6 +143,11 @@ label {
 
 .movie-info {
     margin-left: 5px;
+    width: 250px;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .movie-link {
@@ -152,7 +163,7 @@ label {
 }
 
 .movie-list {
-    margin: 15px 30px;
+    margin: 10px 30px;
 }
 
 .movie-poster {
@@ -162,6 +173,12 @@ label {
 }
 
 .movie-title {
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
+.movie-title-link {
     font-weight: bold;
     font-size: 24px;
     color: #FFFFFF !important;
@@ -214,17 +231,19 @@ label {
     border-radius: 25px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+
     .MovieTable {
-        margin: 0 auto;
-        width: 90%;
+        margin: 0px auto;
+        position: relative;
+        width: 80%;
     }
 
     .Movie {
         background-color: #212529 !important;
         color: #FFFFFF;
         text-decoration: none !important;
-        margin: 10px 0px;
+        margin: 30px 0px;
         padding: 20px 20px;
         border-radius: 20px !important;
         display: flex;
@@ -253,14 +272,25 @@ label {
 
     .image-container {
         width: 200px;
-        height: 100%;
-        margin: 0 auto;
+        height: 300px;
+        margin: 0px auto;
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media only screen and (max-width: 600px) {
+
     .MovieTable {
-        margin: 0 auto;
+        margin: 80px auto;
+        position: relative;
         width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    .MovieTable {
+        margin: 80px auto;
+        position: relative;
+        width: 100%;
     }
 }
